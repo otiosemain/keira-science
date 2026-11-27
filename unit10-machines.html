@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>五年级科学 Unit 10 机械 · Std 5 Science Machines</title><style>
+:root{--c:#6d4aa0;--bg:#fffaf0;--ink:#25303b;--en:#1a6f8f;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","SimHei","WenQuanYi Micro Hei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--c);color:#fff;padding:18px 22px 10px}
+header .hi{font-size:17px;background:rgba(255,255,255,.2);display:inline-block;border-radius:14px;padding:4px 14px;margin-bottom:8px}header .hi .en{font-size:14px;opacity:.95;margin-left:6px}
+header h1{margin:0;font-size:28px} header h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:2px}
+header p{margin:6px 0 0;font-size:15px} header p .en{opacity:.9}
+nav{display:flex;gap:6px;background:var(--c);padding:0 16px;position:sticky;top:0;z-index:5}
+nav button{border:0;background:rgba(255,255,255,.22);color:#fff;font:inherit;font-size:17px;padding:10px 18px;border-radius:12px 12px 0 0;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--c);font-weight:700}
+main{max-width:900px;margin:0 auto;padding:18px}
+.pane{display:none}.pane.on{display:block}
+.sec{background:var(--card);border-radius:14px;padding:12px 18px 6px;margin:0 0 18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.sec h3{margin:6px 0 8px;font-size:21px;color:var(--c)} .sec h3 .en{display:block;font-size:15px;font-weight:400;color:var(--en)}
+.src{display:inline-block;font-size:12px;background:#eef2f5;color:#556;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:400;vertical-align:middle}
+.items{list-style:none;margin:0;padding:0}
+.it{padding:8px 0;border-top:1px dashed #e3e3e3} .it:first-child{border-top:0}
+.it .zh{font-size:19px} .it .en{font-size:14.5px;color:var(--en);margin-top:2px}
+mark{background:#fff0a6;padding:0 3px;border-radius:4px;font-weight:700;color:inherit}
+.en mark{background:#d9f1fb}
+header mark{color:#25303b}
+header .en mark{background:#e6f7ff}
+.opt{color:var(--ink)}.opt:disabled{color:var(--ink);cursor:default}.opt:disabled .en{color:var(--en)}
+.xbadge{font-size:11px;background:#e8e0ff;color:#5a3fb0;border-radius:9px;padding:1px 7px;vertical-align:middle}
+/* flashcards */
+.deckbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.btn{border:0;background:var(--c);color:#fff;font:inherit;font-size:16px;padding:8px 16px;border-radius:10px;cursor:pointer}
+.btn.alt{background:#e6e9ee;color:#333}.btn.good{background:#2e9e5b}.btn.bad{background:#d9534f}
+.btn:disabled{opacity:.4;cursor:default}
+.scene{perspective:1000px;margin:10px auto;max-width:620px}
+.card{position:relative;height:300px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.front{background:#fff;border:4px solid var(--c)} .back{background:#f3fbff;border:4px solid var(--en);transform:rotateY(180deg)}
+.face .zh{font-size:32px;font-weight:700} .face .en{font-size:21px;color:var(--en);margin-top:6px}
+.back .zh{font-size:24px;font-weight:600}.back .en{font-size:18px}
+.face .meta{position:absolute;bottom:10px;font-size:12px;color:#778}
+.hint{text-align:center;color:#667;font-size:14px}
+.pgbar{height:10px;background:#e4e4e4;border-radius:6px;overflow:hidden;margin:6px 0}.pgbar i{display:block;height:100%;background:#2e9e5b;width:0}
+.stat{font-size:15px;color:#445}
+/* quiz */
+.qbox{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.qnum{font-size:14px;color:#667}.q .zh{font-size:22px;font-weight:600}.q .en{font-size:16px;color:var(--en)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{border:2px solid #cfd8e0;background:#fff;border-radius:12px;padding:10px 14px;text-align:left;font:inherit;cursor:pointer}
+.opt .zh{font-size:19px}.opt .en{font-size:14px;color:var(--en)}
+.opt:hover:not(:disabled){border-color:var(--c);background:#fffbe9}
+.opt.right{border-color:#2e9e5b;background:#e3f6ea}.opt.wrong{border-color:#d9534f;background:#fde7e6}
+.fb{display:none;border-radius:12px;padding:12px 14px;margin-top:8px}
+.fb.show{display:block}.fb.ok{background:#e3f6ea}.fb.no{background:#fde7e6}
+.fb .zh{font-size:17px}.fb .en{font-size:14px;color:var(--en)}.fb .src{margin:6px 0 0}
+.score{text-align:center;padding:20px}.score .big{font-size:56px;font-weight:800;color:var(--c)}
+.wrongs li{margin:8px 0}
+footer{text-align:center;color:#889;font-size:12px;padding:20px}
+@media print{nav,.deckbar,.btn{display:none}.pane{display:block!important}.card{height:auto}}
+</style></head>
+<body>
+<header><div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div><p style="margin:8px 0 0"><a href="./" style="color:#fff;text-decoration:none;font-size:15px;opacity:.95">🏠 首页 Home</a></p><h1>单元 10：机械<small>Unit 10: Machines</small></h1>
+<p>这一单元学习我们周围的<mark>工具</mark>是由哪些<mark>简单机械</mark>组成的，以及怎样制造<mark>可永续使用</mark>的工具。<br><span class="en">This unit covers which <mark>simple machines</mark> make up the <mark>tools</mark> around us, and how to make tools that can be <mark>used sustainably</mark>.</span></p>
+<p style="font-size:12px;opacity:.85">五年级科学 Year 5 Science · KSSR Semakan · 来源 Source: S6 p.205-215 (KPM 五年级科学课本 Textbook, 第10单元 + 考卷 exam papers S3-S5)</p></header>
+<nav><button class="on" data-p="notes">📖 笔记 Notes</button><button data-p="cards">🃏 闪卡 Flashcards (20)</button><button data-p="quiz">✅ 测验 Quiz (14)</button></nav>
+<main>
+<div id="notes" class="pane on"><section class="sec"><h3><span class="zh">10.1 工具和简单机械</span><span class="en">10.1 Tools and Simple Machines</span><span class="src">S6 p.206-211, p.214</span></h3><ul class="items">
+<li class="it"><div class="zh">我们周围有很多<mark>工具</mark>，它们帮助人完成工作，让工作更轻松。 </div><div class="en">There are many <mark>tools</mark> around us; they help us do work more easily.</div></li>
+<li class="it"><div class="zh">许多工具由一种或几种<mark>简单机械</mark>组合而成。 </div><div class="en">Many tools are made of one or more <mark>simple machines</mark>.</div></li>
+<li class="it"><div class="zh"><mark>六种简单机械</mark>：<mark>杠杆</mark>、<mark>滑轮</mark>、<mark>轮轴</mark>、<mark>齿轮</mark>、<mark>尖劈</mark>、<mark>螺旋</mark>。 </div><div class="en"><mark>Six simple machines</mark>: <mark>lever</mark>, <mark>pulley</mark>, <mark>wheel and axle</mark>, <mark>gear</mark>, <mark>wedge</mark> and <mark>screw</mark>.</div></li>
+<li class="it"><div class="zh"><mark>指甲钳</mark>由<mark>杠杆</mark>和<mark>尖劈</mark>组成，帮助我们更轻松地修剪指甲。 </div><div class="en">A <mark>nail clipper</mark> is made of a <mark>lever</mark> and a <mark>wedge</mark>, helping us trim nails more easily.</div></li>
+<li class="it"><div class="zh"><mark>手摇削笔机</mark>：<mark>轮轴</mark>（曲柄转动时带动齿轮和滚刀）、<mark>齿轮</mark>（让滚刀围绕铅笔旋转）、<mark>尖劈</mark>（锋利的滚刀把铅笔削尖）。 </div><div class="en"><mark>Hand-crank pencil sharpener</mark>: <mark>wheel and axle</mark> (the crank turns the gears and cutter), <mark>gears</mark> (make the cutter turn around the pencil) and <mark>wedge</mark> (the sharp cutter sharpens the pencil).</div></li>
+<li class="it"><div class="zh"><mark>手表</mark>：轮轴（柄轴带动齿轮）、<mark>齿轮</mark>（控制表针转动）、<mark>螺旋</mark>（嵌合表内的零件）。 </div><div class="en"><mark>Watch</mark>: wheel and axle (the stem turns gears), <mark>gears</mark> (control the hands) and <mark>screws</mark> (hold parts together).</div></li>
+<li class="it"><div class="zh"><mark>修剪树枝的工具</mark>：<mark>杠杆</mark>（减少所需的力）、<mark>尖劈</mark>（交错的刀刃）、<mark>滑轮</mark>（滑轮组轻松、省力地控制刀刃开合）。 </div><div class="en"><mark>Tree-pruning tool</mark>: <mark>lever</mark> (reduces the force needed), <mark>wedge</mark> (the crossing blades) and <mark>pulley</mark> (a pulley set opens and closes the blades easily).</div></li>
+<li class="it"><div class="zh"><mark>手推车</mark>能帮助人们搬运重物；它由<mark>杠杆</mark>和<mark>轮轴</mark>组成。 </div><div class="en">A <mark>wheelbarrow</mark> helps people move heavy things; it is made of a <mark>lever</mark> and a <mark>wheel and axle</mark>.</div></li>
+<li class="it"><div class="zh">每种简单机械都有自己的<mark>功用</mark>，<mark>缺一不可</mark>，组合起来工作才能完美。 </div><div class="en">Each simple machine has its own <mark>job</mark> and <mark>none can be left out</mark>; they work best together.</div></li>
+<li class="it"><div class="zh">如果其中一个部件被卡住（例：削笔机的滚刀被笔芯卡住），曲柄就转不动，整个工具无法正常操作。 </div><div class="en">If one part is jammed (e.g. the sharpener&#x27;s cutter is blocked by lead), the crank cannot turn and the whole tool stops working.</div></li>
+<li class="it"><div class="zh">生活中的例子：跷跷板（杠杆）、旗杆（滑轮）、门把手（轮轴）、斧头（尖劈）、瓶盖（螺旋）。 <span class="xbadge" title="Extra explanation beyond the workbook (KSSR Year 5 level)">extra 补充</span></div><div class="en">Everyday examples: seesaw (lever), flagpole (pulley), door knob (wheel and axle), axe (wedge), bottle cap (screw).</div></li>
+</ul></section>
+<section class="sec"><h3><span class="zh">10.2 可永续使用的工具</span><span class="en">10.2 Tools That Can Be Used Sustainably</span><span class="src">S6 p.212-215</span></h3><ul class="items">
+<li class="it"><div class="zh"><mark>永续使用</mark>的工具：不容易坏，能长久、安全地使用，不会浪费资源。 </div><div class="en">A tool that can be <mark>used sustainably</mark> does not break easily and can be used safely for a long time without wasting resources.</div></li>
+<li class="it"><div class="zh">例：破旧、生锈的滑板和跷跷板对人有危害，必须修复或更换。 </div><div class="en">e.g. a broken slide and a rusty seesaw are dangerous and must be repaired or replaced.</div></li>
+<li class="it"><div class="zh">制造可永续使用的工具时，需要考虑： </div><div class="en">When making a sustainable tool, think about:</div></li>
+<li class="it"><div class="zh"><mark>适当的材料</mark> </div><div class="en"><mark>suitable materials</mark></div></li>
+<li class="it"><div class="zh"><mark>使用寿命</mark> </div><div class="en"><mark>lifespan</mark></div></li>
+<li class="it"><div class="zh"><mark>维修与保养费用</mark> </div><div class="en"><mark>repair and maintenance cost</mark></div></li>
+<li class="it"><div class="zh"><mark>制作成本</mark> </div><div class="en"><mark>production cost</mark></div></li>
+<li class="it"><div class="zh"><mark>环保性</mark> </div><div class="en"><mark>environmental friendliness</mark></div></li>
+<li class="it"><div class="zh"><mark>安全性</mark> </div><div class="en"><mark>safety</mark></div></li>
+<li class="it"><div class="zh">设计和改良工具的步骤：列出需要改善的工具和问题 → 提出方法 → 画设计图 → 评估并选出一张 → 收集意见，再改良 → 分享作品。 </div><div class="en">Steps to design and improve a tool: list the tool and its problem → suggest solutions → draw designs → evaluate and choose one → collect feedback and improve → share your work.</div></li>
+<li class="it"><div class="zh">制造可永续使用的工具是非常重要的。 </div><div class="en">Making tools that can be used sustainably is very important.</div></li>
+</ul></section><p class="hint">标有 <span class="xbadge">extra 补充</span> 的是课本/练习册以外的补充说明。 Items marked <span class="xbadge">extra</span> are extra explanations beyond the workbook/textbook.</p></div>
+<div id="cards" class="pane">
+ <div class="deckbar"><button class="btn alt" id="shuf">🔀 打乱 Shuffle</button><button class="btn alt" id="flt">只练没记得的 Practise only unknown</button><button class="btn alt" id="rst">重设 Reset</button></div>
+ <div class="pgbar"><i id="cbar"></i></div><div class="stat" id="cstat"></div>
+ <div class="scene"><div class="card" id="card"><div class="face front" id="cf"></div><div class="face back" id="cb"></div></div></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn alt" id="prev">⬅ 上一张</button><span id="cpos" class="stat"></span><button class="btn alt" id="next">下一张 ➡</button></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn bad" id="again">✘ 再练 Again</button><button class="btn good" id="got">✔ 记得 Got it</button></div>
+ <p class="hint">点卡片翻转（或按空格键）。 Click the card (or press Space) to flip.</p>
+</div>
+<div id="quiz" class="pane"><div id="qarea"></div></div>
+</main>
+<footer>Study Buddy · 五年级科学 · Unit 10 · 不需要网络 works offline</footer>
+<script type="application/json" id="data">{"id": "U10", "cards": [{"fz": "工具", "fe": "tool", "bz": "帮助人把工作做得更轻松", "be": "helps people do work more easily", "s": "S6 p.206", "x": false}, {"fz": "简单机械", "fe": "simple machine", "bz": "工具由一种或几种简单机械组成", "be": "tools are made of one or more of these", "s": "S6 p.207", "x": false}, {"fz": "杠杆", "fe": "lever", "bz": "减少所需的力（修剪树枝的工具）", "be": "reduces the force needed (tree-pruning tool)", "s": "S6 p.209", "x": false}, {"fz": "滑轮", "fe": "pulley", "bz": "滑轮组能轻松、省力地控制刀刃开合", "be": "a pulley set opens and closes blades with little effort", "s": "S6 p.209", "x": false}, {"fz": "轮轴", "fe": "wheel and axle", "bz": "曲柄转动时带动齿轮", "be": "the crank turns the gears", "s": "S6 p.209", "x": false}, {"fz": "齿轮", "fe": "gear", "bz": "让滚刀围绕铅笔旋转；控制表针", "be": "turns the cutter around the pencil; moves watch hands", "s": "S6 p.209", "x": false}, {"fz": "尖劈", "fe": "wedge", "bz": "锋利的刀刃；把铅笔削尖", "be": "a sharp blade; sharpens the pencil", "s": "S6 p.209", "x": false}, {"fz": "螺旋", "fe": "screw", "bz": "嵌合手表内的零件", "be": "holds the parts inside a watch together", "s": "S6 p.209", "x": false}, {"fz": "指甲钳", "fe": "nail clipper", "bz": "杠杆 + 尖劈", "be": "lever + wedge", "s": "S6 p.207", "x": false}, {"fz": "手摇削笔机", "fe": "hand-crank pencil sharpener", "bz": "轮轴 + 齿轮 + 尖劈", "be": "wheel and axle + gears + wedge", "s": "S6 p.208-209", "x": false}, {"fz": "手推车", "fe": "wheelbarrow", "bz": "杠杆 + 轮轴", "be": "lever + wheel and axle", "s": "S6 p.215 (answer p.217)", "x": false}, {"fz": "缺一不可", "fe": "none can be left out", "bz": "每种简单机械都有它的功用", "be": "each simple machine has its own job", "s": "S6 p.210, p.214", "x": false}, {"fz": "永续使用", "fe": "sustainable use", "bz": "能长久、安全使用的工具", "be": "a tool that can be used safely for a long time", "s": "S6 p.212", "x": false}, {"fz": "适当的材料", "fe": "suitable material", "bz": "制造永续使用工具要考虑", "be": "think about this when making sustainable tools", "s": "S6 p.212, p.214", "x": false}, {"fz": "使用寿命", "fe": "lifespan", "bz": "工具能用多久", "be": "how long the tool lasts", "s": "S6 p.214", "x": false}, {"fz": "维修与保养费用", "fe": "repair and maintenance cost", "bz": "制造永续使用工具要考虑", "be": "think about this when making sustainable tools", "s": "S6 p.214", "x": false}, {"fz": "制作成本", "fe": "production cost", "bz": "制造永续使用工具要考虑", "be": "think about this when making sustainable tools", "s": "S6 p.214", "x": false}, {"fz": "环保性", "fe": "environmental friendliness", "bz": "对环境的影响", "be": "how the tool affects the environment", "s": "S6 p.214", "x": false}, {"fz": "安全性", "fe": "safety", "bz": "制造永续使用工具要考虑", "be": "think about this when making sustainable tools", "s": "S6 p.214", "x": false}, {"fz": "设计图", "fe": "design drawing", "bz": "设计和改良工具时要画", "be": "drawn when designing or improving a tool", "s": "S6 p.213", "x": false}], "quiz": [{"qz": "以下哪一项是简单机械？", "qe": "Which of these is a simple machine?", "o": [["电灯", "light bulb"], ["温度计", "thermometer"], ["杠杆", "lever"], ["干电池", "dry cell"]], "a": 2, "tf": false, "ez": "杠杆、滑轮、轮轴、齿轮、尖劈和螺旋是六种简单机械。", "ee": "Lever, pulley, wheel and axle, gear, wedge and screw are the six simple machines.", "s": "S6 p.209"}, {"qz": "指甲钳由哪两种简单机械组成？", "qe": "Which two simple machines make up a nail clipper?", "o": [["杠杆和尖劈", "lever and wedge"], ["螺旋和轮轴", "screw and wheel and axle"], ["滑轮和齿轮", "pulley and gear"], ["齿轮和尖劈", "gear and wedge"]], "a": 0, "tf": false, "ez": "杠杆让我们省力，尖劈把指甲剪断。", "ee": "The lever saves effort and the wedge cuts the nail.", "s": "S6 p.207"}, {"qz": "手推车由哪两种简单机械组成？", "qe": "Which two simple machines make up a wheelbarrow?", "o": [["螺旋和杠杆", "screw and lever"], ["滑轮和螺旋", "pulley and screw"], ["尖劈和齿轮", "wedge and gear"], ["杠杆和轮轴", "lever and wheel and axle"]], "a": 3, "tf": false, "ez": "手推车的把手是杠杆，轮子是轮轴。", "ee": "The handles act as levers and the wheel works as a wheel and axle.", "s": "S6 p.215 (answer p.217)"}, {"qz": "手摇削笔机里的锋利滚刀应用了尖劈。", "qe": "The sharp cutter in a hand-crank pencil sharpener uses a wedge.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "锋利的刀刃就是尖劈，把铅笔削尖。", "ee": "A sharp blade is a wedge; it sharpens the pencil.", "s": "S6 p.209"}, {"qz": "手表中，哪一种简单机械控制表针转动？", "qe": "In a watch, which simple machine controls the movement of the hands?", "o": [["尖劈", "wedge"], ["齿轮", "gear"], ["杠杆", "lever"], ["滑轮", "pulley"]], "a": 1, "tf": false, "ez": "齿轮系统控制表针转动。", "ee": "The system of gears controls the hands.", "s": "S6 p.209"}, {"qz": "手表里用来把零件嵌合固定的是哪一种简单机械？", "qe": "Which simple machine holds the parts inside a watch together?", "o": [["滑轮", "pulley"], ["尖劈", "wedge"], ["杠杆", "lever"], ["螺旋", "screw"]], "a": 3, "tf": false, "ez": "螺旋把表里的零件嵌合在一起。", "ee": "Screws fit the watch parts together.", "s": "S6 p.209"}, {"qz": "修剪树枝的工具里，滑轮组能轻松、省力地控制刀刃开合。", "qe": "In a tree-pruning tool, a pulley set controls the opening and closing of the blades with little effort.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "杠杆、尖劈和滑轮一起工作。", "ee": "The lever, wedge and pulley work together.", "s": "S6 p.209"}, {"qz": "削笔机的滚刀被笔芯卡住，曲柄转不动。这说明什么？", "qe": "The sharpener's cutter is jammed by lead and the crank will not turn. What does this show?", "o": [["简单机械不重要", "simple machines are not important"], ["曲柄是多余的", "the crank is unnecessary"], ["每一种简单机械都有它的功用，缺一不可", "each simple machine has its own job; none can be left out"], ["削笔机不需要齿轮", "a sharpener does not need gears"]], "a": 2, "tf": false, "ez": "机械分工合作，其中一部分出问题，整个工具就无法正常操作。", "ee": "The parts share the work; if one has a problem the whole tool cannot work properly.", "s": "S6 p.210-211, p.214"}, {"qz": "一台机械组合里的任何一种简单机械损坏，工具仍然可以正常操作。", "qe": "If any simple machine in a combined tool is damaged, the tool can still work normally.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "任何一种简单机械损坏，都会使整个工具无法正常操作。", "ee": "If any one simple machine is damaged, the whole tool cannot work properly.", "s": "S6 p.211"}, {"qz": "以下哪一项不是制造可永续使用的工具时要考虑的事项？", "qe": "Which is NOT something to consider when making a sustainable tool?", "o": [["颜色的流行程度", "how fashionable the colour is"], ["环保性", "environmental friendliness"], ["安全性", "safety"], ["使用寿命", "lifespan"]], "a": 0, "tf": false, "ez": "要考虑材料、使用寿命、维修与保养费用、制作成本、环保性和安全性。", "ee": "Consider materials, lifespan, repair and maintenance cost, production cost, environmental friendliness and safety.", "s": "S6 p.212, p.214"}, {"qz": "用塑料制成的铲子容易折断。制造可永续使用的铲子时，应该注意什么？", "qe": "A plastic spade breaks easily. What should be considered when making a sustainable spade?", "o": [["设计与美观", "design and looks"], ["适当的材料", "suitable materials"], ["价钱越便宜越好", "the cheaper the better"], ["越小越好", "the smaller the better"]], "a": 1, "tf": false, "ez": "要选用够坚固的适当材料。", "ee": "Choose suitable materials that are strong enough.", "s": "S6 p.212, p.214; S4 p.3 B2(b)"}, {"qz": "制造可永续使用的工具，可以减少浪费并保护环境。", "qe": "Making tools that can be used sustainably reduces waste and protects the environment.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "工具用得久，就不用常常更换，也节省资源。", "ee": "Tools that last do not need frequent replacing, which saves resources.", "s": "S6 p.212-214"}, {"qz": "生锈而危险的跷跷板，最合适的做法是？", "qe": "What is the best action for a rusty, dangerous seesaw?", "o": [["继续让小朋友玩", "let children keep playing on it"], ["不理它", "ignore it"], ["把它修复或更换", "repair or replace it"], ["涂上糖", "cover it with sugar"]], "a": 2, "tf": false, "ez": "危险的设施必须修复或更换，确保安全使用。", "ee": "Dangerous equipment must be repaired or replaced to ensure safe use.", "s": "S6 p.212"}, {"qz": "一个工具由轮轴、螺旋和齿轮组成。这说明什么？", "qe": "A tool is made of a wheel and axle, a screw and gears. What does this show?", "o": [["一个工具只能有一种简单机械", "a tool can only have one simple machine"], ["螺旋不是简单机械", "a screw is not a simple machine"], ["工具不需要简单机械", "tools do not need simple machines"], ["一个工具可由多种简单机械组合而成", "a tool can be made of several simple machines combined"]], "a": 3, "tf": false, "ez": "许多工具由两种或以上的简单机械组合而成。", "ee": "Many tools combine two or more simple machines.", "s": "S6 p.207, p.209; S5 p.4 Q6"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'yc5sci-' + D.id;
+const $ = (s, r=document) => r.querySelector(s);
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>');}
+// tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+});
+// ---------- flashcards ----------
+let known = {}; try{known = JSON.parse(localStorage.getItem(KEY+'-cards')||'{}')}catch(e){}
+let order = D.cards.map((_,i)=>i), pos = 0, onlyAgain = false;
+function save(){try{localStorage.setItem(KEY+'-cards',JSON.stringify(known))}catch(e){}}
+function buildOrder(){ order = D.cards.map((_,i)=>i).filter(i=>!onlyAgain || known[i]!==1); if(!order.length){order=D.cards.map((_,i)=>i);onlyAgain=false;} pos=Math.min(pos,order.length-1); }
+function showCard(){
+  const i = order[pos], c = D.cards[i];
+  const card = $('#card'); card.classList.remove('flip');
+  $('#cf').innerHTML = `<div class="zh">${esc(c.fz)}</div><div class="en">${esc(c.fe)}</div><div class="meta">${c.x?'extra 补充 · ':''}${esc(c.s)} · 点击翻转 click to flip</div>`;
+  $('#cb').innerHTML = `<div class="zh">${esc(c.bz)}</div><div class="en">${esc(c.be)}</div><div class="meta">${esc(c.s)}</div>`;
+  $('#cpos').textContent = `${pos+1} / ${order.length}`;
+  const n = Object.values(known).filter(v=>v===1).length;
+  $('#cstat').textContent = `已记得 Got it: ${n} / ${D.cards.length}`;
+  $('#cbar').style.width = (100*n/D.cards.length)+'%';
+}
+$('#card').onclick = ()=>$('#card').classList.toggle('flip');
+$('#prev').onclick = ()=>{pos=(pos-1+order.length)%order.length;showCard()};
+$('#next').onclick = ()=>{pos=(pos+1)%order.length;showCard()};
+$('#got').onclick = ()=>{known[order[pos]]=1;save();$('#next').click()};
+$('#again').onclick = ()=>{known[order[pos]]=0;save();$('#next').click()};
+$('#shuf').onclick = ()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;showCard()};
+$('#flt').onclick = ()=>{onlyAgain=!onlyAgain;$('#flt').textContent=onlyAgain?'显示全部 Show all':'只练没记得的 Practise only unknown';pos=0;buildOrder();showCard()};
+$('#rst').onclick = ()=>{known={};save();onlyAgain=false;$('#flt').textContent='只练没记得的 Practise only unknown';buildOrder();pos=0;showCard()};
+document.addEventListener('keydown',e=>{ if(!$('#cards').classList.contains('on'))return; if(e.key===' '){e.preventDefault();$('#card').click()} if(e.key==='ArrowRight')$('#next').click(); if(e.key==='ArrowLeft')$('#prev').click();});
+buildOrder(); showCard();
+// ---------- quiz ----------
+let qs=[], qi=0, score=0, wrong=[];
+function startQuiz(){ qs=D.quiz.map((_,i)=>i); for(let i=qs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qs[i],qs[j]]=[qs[j],qs[i]]} qi=0;score=0;wrong=[]; renderQ(); }
+function renderQ(){
+  const box=$('#qarea');
+  if(qi>=qs.length){ return endQuiz(); }
+  const q=D.quiz[qs[qi]];
+  const opts = q.o.map((o,k)=>`<button class="opt" data-k="${k}"><div class="zh">${esc(o[0])}</div><div class="en">${esc(o[1])}</div></button>`).join('');
+  box.innerHTML = `<div class="qbox q"><div class="qnum">第 ${qi+1} / ${qs.length} 题 Question ${qi+1} of ${qs.length} · ${q.tf?'对错题 True / False':'选择题 Multiple choice'}</div>
+   <div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="opts">${opts}</div>
+   <div class="fb" id="fb"></div><div style="text-align:right;margin-top:10px"><button class="btn" id="nq" style="display:none">${qi+1<qs.length?'下一题 Next ➜':'看分数 See score ➜'}</button></div></div>`;
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k,q,b));
+  $('#nq').onclick=()=>{qi++;renderQ()};
+}
+function answer(k,q,btn){
+  const ok = k===q.a; if(ok)score++; else wrong.push(qs[qi]);
+  document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true; if(i===q.a)b.classList.add('right'); else if(b===btn)b.classList.add('wrong');});
+  const fb=$('#fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML = `<div class="zh"><b>${ok?'✔ 答对了！':'✘ 答错了。'}</b> ${esc(q.ez)}</div><div class="en"><b>${ok?'Correct!':'Not quite.'}</b> ${esc(q.ee)}</div><div class="src">来源 Source: ${esc(q.s)}</div>`;
+  $('#nq').style.display='inline-block';
+}
+function endQuiz(){
+  const n=qs.length, pct=Math.round(100*score/n);
+  const msg = pct>=90?'太棒了！Excellent!':pct>=70?'做得好！Well done!':pct>=50?'继续加油！Keep going!':'再看一遍笔记，再试一次。Review the notes and try again.';
+  try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');h.push({d:new Date().toISOString().slice(0,10),s:score,n:n});localStorage.setItem(KEY+'-quiz',JSON.stringify(h.slice(-20)))}catch(e){}
+  let hist=''; try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');hist='<div class="stat">最近成绩 Recent scores: '+h.slice(-5).map(x=>x.s+'/'+x.n).join(' · ')+'</div>'}catch(e){}
+  let w=''; if(wrong.length){w='<h3>要复习的题目 Questions to review</h3><ul class="wrongs">'+wrong.map(i=>{const q=D.quiz[i];return `<li><div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="stat">→ ${esc(q.o[q.a][0])} / ${esc(q.o[q.a][1])} <span class="src">${esc(q.s)}</span></div></li>`}).join('')+'</ul>'}
+  $('#qarea').innerHTML = `<div class="qbox score"><div class="big">${score} / ${n}</div><div style="font-size:22px">${msg}</div>${hist}<p><button class="btn" id="retry">再做一次 Try again</button></p>${w}</div>`;
+  $('#retry').onclick=startQuiz;
+}
+startQuiz();
+</script></body></html>
