@@ -1,0 +1,68 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp index.html .nojekyll unit*.html _site/
+          if [ -f notes-units1-4.pdf ]; then
+            cp notes-units1-4.pdf _site/
+          elif [ -f notes-units1-4.pdf.b64 ]; then
+            base64 -d notes-units1-4.pdf.b64 > _site/notes-units1-4.pdf
+          else
+            echo "Missing notes-units1-4.pdf" >&2
+            exit 1
+          fi
+          if [ -f notes-units5-10.pdf ]; then
+            cp notes-units5-10.pdf _site/
+          elif [ -f notes-units5-10.pdf.b64 ]; then
+            base64 -d notes-units5-10.pdf.b64 > _site/notes-units5-10.pdf
+          else
+            echo "Missing notes-units5-10.pdf" >&2
+            exit 1
+          fi
+          # sanity: PDFs should start with %PDF
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in [Path("_site/notes-units1-4.pdf"), Path("_site/notes-units5-10.pdf")]:
+              head = p.read_bytes()[:5]
+              if head != b"%PDF-":
+                  raise SystemExit(f"{p} is not a PDF, starts with {head!r}")
+              print(p, "ok", p.stat().st_size)
+          PY
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
