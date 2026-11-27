@@ -30,8 +30,9 @@ jobs:
           mkdir -p _site
           cp .nojekyll *.html _site/
           # PDFs are stored as base64 text (*.pdf.b64) and decoded here
+          # large PDFs are split: name.pdf.b64 + name.pdf.b64.1, .2 ... (concatenated in order)
           for f in *.pdf.b64; do
-            base64 -d "$f" > "_site/${f%.b64}"
+            cat "$f" $(ls "$f".* 2>/dev/null | sort -t. -k4 -n) | base64 -d > "_site/${f%.b64}"
           done
           for f in *.pdf; do
             [ -f "$f" ] && [ ! -f "_site/$f" ] && cp "$f" _site/ || true
