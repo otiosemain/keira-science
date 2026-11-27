@@ -38,14 +38,14 @@ jobs:
           done
           python3 - <<'PY'
           from pathlib import Path
-          need = ["notes-units1-4.pdf", "notes-units5-10.pdf", "question-bank.pdf", "exam-papers.pdf", "answer-key.pdf"]
+          need = ["notes-units1-4.pdf", "notes-units5-10.pdf", "question-bank.pdf", "exam-papers.pdf", "answer-key.pdf", "summaries.pdf"]
           for n in need:
               p = Path("_site") / n
               head = p.read_bytes()[:5]
               if head != b"%PDF-":
                   raise SystemExit(f"{p} is not a PDF, starts with {head!r}")
               print(p, "ok", p.stat().st_size)
-          for n in ["index.html", "exam.html", "exam-midyear.html", "exam-yearend-1.html"]:
+          for n in ["index.html", "exam.html", "exam-midyear.html", "exam-yearend-1.html", "exam-guide.html", "syllabus-map.html"]:
               assert (Path("_site") / n).exists(), n
           PY
 
