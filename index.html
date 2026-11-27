@@ -39,6 +39,19 @@ footer{text-align:center;color:#889;font-size:12px;padding:8px 16px 28px}
   .grid,.pdfs{grid-template-columns:1fr}
   a.unit .zh{font-size:20px}
 }
+.ucard{display:flex;flex-direction:column;background:var(--card);border-radius:16px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c);overflow:hidden}
+.ucard a.unit{box-shadow:none;border-left:0;border-radius:0;min-height:0}
+.ucard .links{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.ucard .links a{font-size:13.5px;text-decoration:none;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:3px 10px;background:#fff}
+.ucard .links a:hover{background:var(--c);color:#fff}
+.exam{background:linear-gradient(135deg,#c0392b,#7b1f16);color:#fff;border-radius:18px;padding:16px 18px;margin:0 0 20px}
+.exam h2{color:#fff;margin:0 0 6px}.exam h2 .en{color:#ffe3dc}
+.exam .row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+.exam .row a{display:block;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;border-radius:14px;padding:10px 12px}
+.exam .row a:hover{background:rgba(255,255,255,.26)}
+.exam .row a b{display:block;font-size:17px}.exam .row a span{font-size:13px;opacity:.92}
+.exam p{margin:4px 0 0;font-size:14.5px}.exam p .en{display:block;opacity:.9;font-size:13.5px}
+@media(max-width:640px){.exam .row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -46,29 +59,33 @@ footer{text-align:center;color:#889;font-size:12px;padding:8px 16px 28px}
   <div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div>
   <h1>五年级科学<small>Standard 5 Science</small></h1>
   <p>玉柴 · Yuk Chai · KSSR Semakan
-    <span class="en">Bilingual notes, flashcards and quizzes. Chinese first, English underneath.</span>
+    <span class="en">Bilingual notes, flashcards, quizzes and exam practice. Chinese first, English underneath.</span>
   </p>
 </header>
 <main>
-  <div class="new">🆕 每个单元现在都有思维导图、彩色图解、“记住！”和“你知道吗？”小框、比较表、实验步骤和看图题。<span class="en">Every unit now has a mind map, colourful diagrams, “Remember!” and “Did you know?” boxes, comparison tables, experiment steps and picture questions.</span></div>
-  <h2>单元 Units<span class="en">Tap a unit to open the notes, flashcards and quiz</span></h2>
+  <div class="new">🆕 每个单元现在有 50 多张闪卡和 40 多道题（随机 15 题、全部题目、错题复习），还有新的“考试练习”：单元练习卷、年中和年终模拟试卷。<span class="en">Each unit now has 50+ flashcards and 40+ quiz questions (random 15, all questions, wrong-answer review), plus new Exam Practice: topical papers and mid-year / year-end mock papers.</span></div>
+  <div class="exam"><h2>📝 考试练习 Exam Practice<span class="en">UASA 格式：A 组选择题、B 组配对/✓✗、C 组结构题 · 有计时器和等级 · timed, with grades</span></h2><div class="row"><a href="exam-midyear.html"><b>年中模拟</b><span>Mid-year mock · 单元 1–4 · 75 min</span></a><a href="exam-yearend-1.html"><b>年终模拟 1</b><span>Year-end mock 1 · 75 min</span></a><a href="exam-yearend-2.html"><b>年终模拟 2</b><span>Year-end mock 2 · 75 min</span></a><a href="exam-yearend-3.html"><b>年终模拟 3</b><span>Year-end mock 3 · 75 min</span></a></div><p>每个单元也有 40 分钟的单元练习卷（见下面每个单元的 📝）。 <a href="exam.html" style="color:#fff;font-weight:700">全部试卷 All papers →</a><span class="en">Each unit also has a 40-minute topical paper (📝 under each unit).</span></p></div>
+  <h2>单元 Units<span class="en">Tap a unit for notes, flashcards, quiz and exam practice</span></h2>
   <div class="grid">
-    <a class="unit" href="unit01-science-skills.html" style="--c:#2f7fd1"><div class="num">单元 Unit 1</div><div class="zh"><span class="uic">🔬</span> 科学技能</div><div class="en">Scientific Skills</div></a>
-    <a class="unit" href="unit02-humans.html" style="--c:#d1503a"><div class="num">单元 Unit 2</div><div class="zh"><span class="uic">🫀</span> 人类</div><div class="en">Humans</div></a>
-    <a class="unit" href="unit03-animals.html" style="--c:#2e9e5b"><div class="num">单元 Unit 3</div><div class="zh"><span class="uic">🐾</span> 动物</div><div class="en">Animals</div></a>
-    <a class="unit" href="unit04-plants.html" style="--c:#7a9a1f"><div class="num">单元 Unit 4</div><div class="zh"><span class="uic">🌱</span> 植物</div><div class="en">Plants</div></a>
-    <a class="unit" href="unit05-electricity.html" style="--c:#d68a00"><div class="num">单元 Unit 5</div><div class="zh"><span class="uic">⚡</span> 电</div><div class="en">Electricity</div></a>
-    <a class="unit" href="unit06-heat.html" style="--c:#c2412d"><div class="num">单元 Unit 6</div><div class="zh"><span class="uic">🌡️</span> 热</div><div class="en">Heat</div></a>
-    <a class="unit" href="unit07-rusting.html" style="--c:#8a5a2b"><div class="num">单元 Unit 7</div><div class="zh"><span class="uic">🔩</span> 生锈</div><div class="en">Rusting</div></a>
-    <a class="unit" href="unit08-matter.html" style="--c:#1f8a8a"><div class="num">单元 Unit 8</div><div class="zh"><span class="uic">🧊</span> 物质</div><div class="en">Matter</div></a>
-    <a class="unit" href="unit09-moon-and-constellations.html" style="--c:#4b4fa8"><div class="num">单元 Unit 9</div><div class="zh"><span class="uic">🌙</span> 月相和星座</div><div class="en">Phases of the Moon and Constellations</div></a>
-    <a class="unit" href="unit10-machines.html" style="--c:#6d4aa0"><div class="num">单元 Unit 10</div><div class="zh"><span class="uic">⚙️</span> 机械</div><div class="en">Machines</div></a>
+    <div class="ucard" style="--c:#2f7fd1"><a class="unit" href="unit01-science-skills.html" style="--c:#2f7fd1"><div class="num">单元 Unit 1</div><div class="zh"><span class="uic">🔬</span> 科学技能</div><div class="en">Scientific Skills</div></a><div class="links"><a href="unit01-science-skills.html">📖 笔记 Notes</a><a href="unit01-science-skills.html#cards">🃏 闪卡 Cards</a><a href="unit01-science-skills.html#quiz">✅ 题库 Quiz</a><a href="exam-unit01.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#d1503a"><a class="unit" href="unit02-humans.html" style="--c:#d1503a"><div class="num">单元 Unit 2</div><div class="zh"><span class="uic">🫀</span> 人类</div><div class="en">Humans</div></a><div class="links"><a href="unit02-humans.html">📖 笔记 Notes</a><a href="unit02-humans.html#cards">🃏 闪卡 Cards</a><a href="unit02-humans.html#quiz">✅ 题库 Quiz</a><a href="exam-unit02.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#2e9e5b"><a class="unit" href="unit03-animals.html" style="--c:#2e9e5b"><div class="num">单元 Unit 3</div><div class="zh"><span class="uic">🐾</span> 动物</div><div class="en">Animals</div></a><div class="links"><a href="unit03-animals.html">📖 笔记 Notes</a><a href="unit03-animals.html#cards">🃏 闪卡 Cards</a><a href="unit03-animals.html#quiz">✅ 题库 Quiz</a><a href="exam-unit03.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#7a9a1f"><a class="unit" href="unit04-plants.html" style="--c:#7a9a1f"><div class="num">单元 Unit 4</div><div class="zh"><span class="uic">🌱</span> 植物</div><div class="en">Plants</div></a><div class="links"><a href="unit04-plants.html">📖 笔记 Notes</a><a href="unit04-plants.html#cards">🃏 闪卡 Cards</a><a href="unit04-plants.html#quiz">✅ 题库 Quiz</a><a href="exam-unit04.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#d68a00"><a class="unit" href="unit05-electricity.html" style="--c:#d68a00"><div class="num">单元 Unit 5</div><div class="zh"><span class="uic">⚡</span> 电</div><div class="en">Electricity</div></a><div class="links"><a href="unit05-electricity.html">📖 笔记 Notes</a><a href="unit05-electricity.html#cards">🃏 闪卡 Cards</a><a href="unit05-electricity.html#quiz">✅ 题库 Quiz</a><a href="exam-unit05.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#c2412d"><a class="unit" href="unit06-heat.html" style="--c:#c2412d"><div class="num">单元 Unit 6</div><div class="zh"><span class="uic">🌡️</span> 热</div><div class="en">Heat</div></a><div class="links"><a href="unit06-heat.html">📖 笔记 Notes</a><a href="unit06-heat.html#cards">🃏 闪卡 Cards</a><a href="unit06-heat.html#quiz">✅ 题库 Quiz</a><a href="exam-unit06.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#8a5a2b"><a class="unit" href="unit07-rusting.html" style="--c:#8a5a2b"><div class="num">单元 Unit 7</div><div class="zh"><span class="uic">🔩</span> 生锈</div><div class="en">Rusting</div></a><div class="links"><a href="unit07-rusting.html">📖 笔记 Notes</a><a href="unit07-rusting.html#cards">🃏 闪卡 Cards</a><a href="unit07-rusting.html#quiz">✅ 题库 Quiz</a><a href="exam-unit07.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#1f8a8a"><a class="unit" href="unit08-matter.html" style="--c:#1f8a8a"><div class="num">单元 Unit 8</div><div class="zh"><span class="uic">🧊</span> 物质</div><div class="en">Matter</div></a><div class="links"><a href="unit08-matter.html">📖 笔记 Notes</a><a href="unit08-matter.html#cards">🃏 闪卡 Cards</a><a href="unit08-matter.html#quiz">✅ 题库 Quiz</a><a href="exam-unit08.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#4b4fa8"><a class="unit" href="unit09-moon-and-constellations.html" style="--c:#4b4fa8"><div class="num">单元 Unit 9</div><div class="zh"><span class="uic">🌙</span> 月相和星座</div><div class="en">Phases of the Moon and Constellations</div></a><div class="links"><a href="unit09-moon-and-constellations.html">📖 笔记 Notes</a><a href="unit09-moon-and-constellations.html#cards">🃏 闪卡 Cards</a><a href="unit09-moon-and-constellations.html#quiz">✅ 题库 Quiz</a><a href="exam-unit09.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#6d4aa0"><a class="unit" href="unit10-machines.html" style="--c:#6d4aa0"><div class="num">单元 Unit 10</div><div class="zh"><span class="uic">⚙️</span> 机械</div><div class="en">Machines</div></a><div class="links"><a href="unit10-machines.html">📖 笔记 Notes</a><a href="unit10-machines.html#cards">🃏 闪卡 Cards</a><a href="unit10-machines.html#quiz">✅ 题库 Quiz</a><a href="exam-unit10.html">📝 考试练习 Exam</a></div></div>
   </div>
 
-  <h2 style="margin-top:28px">打印笔记 Printable notes<span class="en">PDF notes and glossary for writing practice</span></h2>
+  <h2 style="margin-top:28px">打印版 Printables<span class="en">PDF notes, question bank, exam papers and answer key</span></h2>
   <div class="pdfs">
     <a class="pdf" href="notes-units1-4.pdf"><div class="zh">📄 单元 1–4 笔记和词汇表</div><div class="en">Units 1–4 notes and glossary (PDF)</div></a>
     <a class="pdf" href="notes-units5-10.pdf"><div class="zh">📄 单元 5–10 笔记和词汇表</div><div class="en">Units 5–10 notes and glossary (PDF)</div></a>
+    <a class="pdf" href="question-bank.pdf"><div class="zh">📄 题库（单元 1–10）</div><div class="en">Question bank, Units 1–10 (PDF)</div></a>
+    <a class="pdf" href="exam-papers.pdf"><div class="zh">📄 考试练习试卷</div><div class="en">Exam practice papers + mocks (PDF)</div></a>
+    <a class="pdf" href="answer-key.pdf"><div class="zh">📄 答案（家长用）</div><div class="en">Answer key for parents (PDF)</div></a>
   </div>
 
   <div class="note">手机和平板都可以打开。不需要安装 App，用浏览器即可。离线时，如果页面已经打开过，可能还可以继续看。<span class="en">Works on phones and tablets. Open in any browser — no app needed.</span></div>
