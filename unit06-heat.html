@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>五年级科学 Unit 6 热 · Std 5 Science Heat</title><style>
+:root{--c:#c2412d;--bg:#fffaf0;--ink:#25303b;--en:#1a6f8f;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","SimHei","WenQuanYi Micro Hei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--c);color:#fff;padding:18px 22px 10px}
+header .hi{font-size:17px;background:rgba(255,255,255,.2);display:inline-block;border-radius:14px;padding:4px 14px;margin-bottom:8px}header .hi .en{font-size:14px;opacity:.95;margin-left:6px}
+header h1{margin:0;font-size:28px} header h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:2px}
+header p{margin:6px 0 0;font-size:15px} header p .en{opacity:.9}
+nav{display:flex;gap:6px;background:var(--c);padding:0 16px;position:sticky;top:0;z-index:5}
+nav button{border:0;background:rgba(255,255,255,.22);color:#fff;font:inherit;font-size:17px;padding:10px 18px;border-radius:12px 12px 0 0;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--c);font-weight:700}
+main{max-width:900px;margin:0 auto;padding:18px}
+.pane{display:none}.pane.on{display:block}
+.sec{background:var(--card);border-radius:14px;padding:12px 18px 6px;margin:0 0 18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.sec h3{margin:6px 0 8px;font-size:21px;color:var(--c)} .sec h3 .en{display:block;font-size:15px;font-weight:400;color:var(--en)}
+.src{display:inline-block;font-size:12px;background:#eef2f5;color:#556;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:400;vertical-align:middle}
+.items{list-style:none;margin:0;padding:0}
+.it{padding:8px 0;border-top:1px dashed #e3e3e3} .it:first-child{border-top:0}
+.it .zh{font-size:19px} .it .en{font-size:14.5px;color:var(--en);margin-top:2px}
+mark{background:#fff0a6;padding:0 3px;border-radius:4px;font-weight:700;color:inherit}
+.en mark{background:#d9f1fb}
+header mark{color:#25303b}
+header .en mark{background:#e6f7ff}
+.opt{color:var(--ink)}.opt:disabled{color:var(--ink);cursor:default}.opt:disabled .en{color:var(--en)}
+.xbadge{font-size:11px;background:#e8e0ff;color:#5a3fb0;border-radius:9px;padding:1px 7px;vertical-align:middle}
+/* flashcards */
+.deckbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.btn{border:0;background:var(--c);color:#fff;font:inherit;font-size:16px;padding:8px 16px;border-radius:10px;cursor:pointer}
+.btn.alt{background:#e6e9ee;color:#333}.btn.good{background:#2e9e5b}.btn.bad{background:#d9534f}
+.btn:disabled{opacity:.4;cursor:default}
+.scene{perspective:1000px;margin:10px auto;max-width:620px}
+.card{position:relative;height:300px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.front{background:#fff;border:4px solid var(--c)} .back{background:#f3fbff;border:4px solid var(--en);transform:rotateY(180deg)}
+.face .zh{font-size:32px;font-weight:700} .face .en{font-size:21px;color:var(--en);margin-top:6px}
+.back .zh{font-size:24px;font-weight:600}.back .en{font-size:18px}
+.face .meta{position:absolute;bottom:10px;font-size:12px;color:#778}
+.hint{text-align:center;color:#667;font-size:14px}
+.pgbar{height:10px;background:#e4e4e4;border-radius:6px;overflow:hidden;margin:6px 0}.pgbar i{display:block;height:100%;background:#2e9e5b;width:0}
+.stat{font-size:15px;color:#445}
+/* quiz */
+.qbox{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.qnum{font-size:14px;color:#667}.q .zh{font-size:22px;font-weight:600}.q .en{font-size:16px;color:var(--en)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{border:2px solid #cfd8e0;background:#fff;border-radius:12px;padding:10px 14px;text-align:left;font:inherit;cursor:pointer}
+.opt .zh{font-size:19px}.opt .en{font-size:14px;color:var(--en)}
+.opt:hover:not(:disabled){border-color:var(--c);background:#fffbe9}
+.opt.right{border-color:#2e9e5b;background:#e3f6ea}.opt.wrong{border-color:#d9534f;background:#fde7e6}
+.fb{display:none;border-radius:12px;padding:12px 14px;margin-top:8px}
+.fb.show{display:block}.fb.ok{background:#e3f6ea}.fb.no{background:#fde7e6}
+.fb .zh{font-size:17px}.fb .en{font-size:14px;color:var(--en)}.fb .src{margin:6px 0 0}
+.score{text-align:center;padding:20px}.score .big{font-size:56px;font-weight:800;color:var(--c)}
+.wrongs li{margin:8px 0}
+footer{text-align:center;color:#889;font-size:12px;padding:20px}
+@media print{nav,.deckbar,.btn{display:none}.pane{display:block!important}.card{height:auto}}
+</style></head>
+<body>
+<header><div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div><p style="margin:8px 0 0"><a href="./" style="color:#fff;text-decoration:none;font-size:15px;opacity:.95">🏠 首页 Home</a></p><h1>单元 6：热<small>Unit 6: Heat</small></h1>
+<p>这一单元学习<mark>热</mark>和<mark>温度</mark>的分别、怎样使用<mark>温度计</mark>，以及物质<mark>受热</mark>和<mark>散热</mark>后的变化（<mark>热胀冷缩</mark>）。<br><span class="en">This unit covers the difference between <mark>heat</mark> and <mark>temperature</mark>, how to use a <mark>thermometer</mark>, and how matter changes when it <mark>gains</mark> or <mark>loses heat</mark> (<mark>thermal expansion and contraction</mark>).</span></p>
+<p style="font-size:12px;opacity:.85">五年级科学 Year 5 Science · KSSR Semakan · 来源 Source: S6 p.129-146 (KPM 五年级科学课本 Textbook, 第6单元 + 考卷 exam papers S3-S5)</p></header>
+<nav><button class="on" data-p="notes">📖 笔记 Notes</button><button data-p="cards">🃏 闪卡 Flashcards (24)</button><button data-p="quiz">✅ 测验 Quiz (14)</button></nav>
+<main>
+<div id="notes" class="pane on"><section class="sec"><h3><span class="zh">6.1 热与温度</span><span class="en">6.1 Heat and Temperature</span><span class="src">S6 p.130-134, p.144</span></h3><ul class="items">
+<li class="it"><div class="zh"><mark>热</mark>是把物质变热的一种能。 </div><div class="en"><mark>Heat</mark> is a form of energy that makes matter hot.</div></li>
+<li class="it"><div class="zh"><mark>温度</mark>是物质的冷热程度。我们不能单凭触摸来确定冷热程度，所以要用<mark>温度计</mark>准确测量。 </div><div class="en"><mark>Temperature</mark> is how hot or cold matter is. We cannot rely on touch alone to tell how hot or cold something is, so we measure it accurately with a <mark>thermometer</mark>.</div></li>
+<li class="it"><div class="zh">热总是从温度较高的一端传到温度较低的一端。 </div><div class="en">Heat always flows from the hotter end to the colder end.</div></li>
+<li class="it"><div class="zh">常用的温度单位是<mark>摄氏度</mark>（°C）。<mark>开尔文</mark>（K）和<mark>华氏温度</mark>（°F）也是温度单位。 </div><div class="en">The usual unit of temperature is <mark>degree Celsius</mark> (°C). <mark>Kelvin</mark> (K) and <mark>Fahrenheit</mark> (°F) are also units of temperature.</div></li>
+<li class="it"><div class="zh"><mark>实验室温度计</mark>有<mark>酒精温度计</mark>和<mark>水银温度计</mark>两种。 </div><div class="en">There are two kinds of <mark>laboratory thermometer</mark>: the <mark>alcohol thermometer</mark> and the <mark>mercury thermometer</mark>.</div></li>
+<li class="it"><div class="zh">温度计的部分：<mark>玻璃泡</mark>、<mark>刻度</mark>、<mark>玻璃管</mark>、<mark>酒精柱</mark>（或水银柱）、<mark>捏手处</mark>。 </div><div class="en">Parts of a thermometer: <mark>bulb</mark>, <mark>scale</mark>, <mark>glass tube</mark>, <mark>alcohol column</mark> (or mercury column) and <mark>handle</mark>.</div></li>
+<li class="it"><div class="zh">酒精柱或水银柱会根据周围的冷热程度而上升或下降。 </div><div class="en">The alcohol or mercury column rises or falls depending on how hot or cold the surroundings are.</div></li>
+<li class="it"><div class="zh"><mark>水银</mark>是有毒的液体，使用水银温度计时要小心。 </div><div class="en"><mark>Mercury</mark> is a poisonous liquid, so be careful when using a mercury thermometer.</div></li>
+<li class="it"><div class="zh"><mark>正确使用温度计</mark>： </div><div class="en"><mark>Using a thermometer correctly:</mark></div></li>
+<li class="it"><div class="zh">以直立方式拿着温度计的捏手处。 </div><div class="en">Hold the thermometer upright by its handle.</div></li>
+<li class="it"><div class="zh">把玻璃泡浸入水里，<mark>不能碰到</mark>烧杯底和烧杯壁。 </div><div class="en">Put the bulb in the water; it <mark>must not touch</mark> the bottom or the sides of the beaker.</div></li>
+<li class="it"><div class="zh">等酒精柱或水银柱停止移动后才读数；读数时温度计<mark>不能离开</mark>热水。 </div><div class="en">Read only after the column stops moving; the thermometer <mark>must stay in</mark> the hot water while reading.</div></li>
+<li class="it"><div class="zh">读数时，视线要与液柱的弯月面<mark>平行</mark>。 </div><div class="en">When reading, keep your eye <mark>level</mark> with the curved top of the liquid column.</div></li>
+<li class="it"><div class="zh">水开始变成冰块时的温度是<mark>冰点</mark>（0°C）；水开始变成水蒸气时的温度是<mark>沸点</mark>（100°C）。 </div><div class="en">The temperature at which water starts to turn into ice is the <mark>freezing point</mark> (0°C); the temperature at which water starts to turn into water vapour is the <mark>boiling point</mark> (100°C).</div></li>
+<li class="it"><div class="zh">水达到沸点后，继续加热，温度<mark>保持不变</mark>（100°C）。 </div><div class="en">Once water reaches its boiling point, its temperature <mark>stays the same</mark> (100°C) even if you keep heating.</div></li>
+<li class="it"><div class="zh">热水搁置在室内，温度会逐渐下降至<mark>室温</mark>，然后保持不变。 </div><div class="en">Hot water left in a room cools down gradually to <mark>room temperature</mark> and then stays the same.</div></li>
+<li class="it"><div class="zh">室温一般是 25°C 至 27°C。 <span class="xbadge" title="Extra explanation beyond the workbook (KSSR Year 5 level)">extra 补充</span></div><div class="en">Room temperature is usually 25°C to 27°C.</div></li>
+</ul></section>
+<section class="sec"><h3><span class="zh">6.2 热对物质的影响（热胀冷缩）</span><span class="en">6.2 Effects of Heat on Matter (Thermal Expansion and Contraction)</span><span class="src">S6 p.135-146</span></h3><ul class="items">
+<li class="it"><div class="zh">物质<mark>受热</mark>后：变热、温度上升、<mark>膨胀</mark>。 </div><div class="en">When matter <mark>gains heat</mark>: it becomes hotter, its temperature rises and it <mark>expands</mark>.</div></li>
+<li class="it"><div class="zh">物质<mark>散热</mark>后：变冷、温度下降、<mark>收缩</mark>。 </div><div class="en">When matter <mark>loses heat</mark>: it becomes colder, its temperature falls and it <mark>contracts</mark>.</div></li>
+<li class="it"><div class="zh"><mark>铁球和铁环实验</mark>：原本铁球能穿过铁环；加热后铁球膨胀，不能穿过；放进冷水后铁球收缩，又能穿过。 </div><div class="en"><mark>Ball-and-ring experiment</mark>: at first the iron ball passes through the ring; after heating it expands and cannot pass; after cooling in cold water it contracts and passes through again.</div></li>
+<li class="it"><div class="zh">彩色水放进热水中，水位<mark>上升</mark>；放进冷水中，水位<mark>下降</mark>。 </div><div class="en">Coloured water in hot water: the water level <mark>rises</mark>; in cold water: the level <mark>falls</mark>.</div></li>
+<li class="it"><div class="zh">玻璃瓶里的空气受热会膨胀，使套在瓶口的气球变大；放进冷水后，空气收缩，气球变小。 </div><div class="en">Air in a glass bottle expands when heated and blows up the balloon on the neck; in cold water the air contracts and the balloon shrinks.</div></li>
+<li class="it"><div class="zh">水散热收缩，但降到冰点结成冰块时反而会<mark>膨胀</mark>，这是一种特殊的膨胀现象。 </div><div class="en">Water contracts when it loses heat, but when it freezes into ice at the freezing point it <mark>expands</mark> – a special case of expansion.</div></li>
+<li class="it"><div class="zh"><mark>应用热胀冷缩原理的例子</mark>： </div><div class="en"><mark>Examples of thermal expansion and contraction:</mark></div></li>
+<li class="it"><div class="zh">火车铁轨之间留有空隙，是为了避免铁轨在天气热时因膨胀而变形。 </div><div class="en">Gaps are left between railway tracks to stop the tracks bending when they expand in hot weather.</div></li>
+<li class="it"><div class="zh">电线松弛地悬挂在电线杆上，是为了防止电线在天气冷时因收缩而被扯断。 </div><div class="en">Electric cables hang loosely on poles so they are not pulled and snapped when they contract in cold weather.</div></li>
+<li class="it"><div class="zh">高架桥和桥面上都留有空隙，是为了避免热天时因膨胀而裂开。 </div><div class="en">Gaps are left in flyovers and bridge decks so they do not crack when they expand in hot weather.</div></li>
+<li class="it"><div class="zh">人行道地砖之间留有空隙，是为了避免热天时地砖膨胀而裂开。 </div><div class="en">Gaps are left between pavement tiles so the tiles do not crack when they expand in hot weather.</div></li>
+<li class="it"><div class="zh"><mark>解决生活难题</mark>：把凹陷的乒乓球放进热水，里面的空气膨胀，乒乓球就恢复原状。 </div><div class="en"><mark>Solving everyday problems</mark>: put a dented ping-pong ball into hot water; the air inside expands and the ball pops back into shape.</div></li>
+<li class="it"><div class="zh">把拧不开的瓶盖放进热水里浸一浸，金属盖受热膨胀，就容易拧开。 <span class="xbadge" title="Extra explanation beyond the workbook (KSSR Year 5 level)">extra 补充</span></div><div class="en">Dip a stuck bottle cap in hot water; the metal cap expands and becomes easy to unscrew.</div></li>
+<li class="it"><div class="zh">紧紧套在一起的两个玻璃杯：在上面的杯子加入冰块，上杯冷却收缩，就能分开。 </div><div class="en">Two glasses stuck together: put ice in the top glass so it cools and contracts, and they come apart.</div></li>
+<li class="it"><div class="zh">应用热胀冷缩原理的用具：<mark>温度计</mark>、<mark>消防喷头</mark>等。 </div><div class="en">Devices that use thermal expansion and contraction: <mark>thermometers</mark>, <mark>fire sprinklers</mark>, etc.</div></li>
+</ul></section><p class="hint">标有 <span class="xbadge">extra 补充</span> 的是课本/练习册以外的补充说明。 Items marked <span class="xbadge">extra</span> are extra explanations beyond the workbook/textbook.</p></div>
+<div id="cards" class="pane">
+ <div class="deckbar"><button class="btn alt" id="shuf">🔀 打乱 Shuffle</button><button class="btn alt" id="flt">只练没记得的 Practise only unknown</button><button class="btn alt" id="rst">重设 Reset</button></div>
+ <div class="pgbar"><i id="cbar"></i></div><div class="stat" id="cstat"></div>
+ <div class="scene"><div class="card" id="card"><div class="face front" id="cf"></div><div class="face back" id="cb"></div></div></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn alt" id="prev">⬅ 上一张</button><span id="cpos" class="stat"></span><button class="btn alt" id="next">下一张 ➡</button></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn bad" id="again">✘ 再练 Again</button><button class="btn good" id="got">✔ 记得 Got it</button></div>
+ <p class="hint">点卡片翻转（或按空格键）。 Click the card (or press Space) to flip.</p>
+</div>
+<div id="quiz" class="pane"><div id="qarea"></div></div>
+</main>
+<footer>Study Buddy · 五年级科学 · Unit 6 · 不需要网络 works offline</footer>
+<script type="application/json" id="data">{"id": "U6", "cards": [{"fz": "热", "fe": "heat", "bz": "把物质变热的一种能", "be": "a form of energy that makes matter hot", "s": "S6 p.144", "x": false}, {"fz": "温度", "fe": "temperature", "bz": "物质的冷热程度", "be": "how hot or cold matter is", "s": "S6 p.144", "x": false}, {"fz": "温度计", "fe": "thermometer", "bz": "准确测量温度的仪器", "be": "an instrument that measures temperature accurately", "s": "S6 p.131", "x": false}, {"fz": "酒精温度计", "fe": "alcohol thermometer", "bz": "酒精柱随冷热上升或下降", "be": "alcohol column rises or falls with hotness", "s": "S6 p.131", "x": false}, {"fz": "水银温度计", "fe": "mercury thermometer", "bz": "水银有毒，要小心", "be": "mercury is poisonous; be careful", "s": "S6 p.131-132", "x": false}, {"fz": "摄氏度", "fe": "degree Celsius (°C)", "bz": "常用的温度单位", "be": "the usual unit of temperature", "s": "S6 p.131", "x": false}, {"fz": "开尔文 / 华氏温度", "fe": "Kelvin (K) / Fahrenheit (°F)", "bz": "也是温度单位", "be": "other units of temperature", "s": "S6 p.131", "x": false}, {"fz": "玻璃泡", "fe": "bulb (of thermometer)", "bz": "不能碰到烧杯底和烧杯壁", "be": "must not touch the bottom or side of the beaker", "s": "S6 p.132", "x": false}, {"fz": "刻度", "fe": "scale", "bz": "温度计上读数的标记", "be": "the markings used to read the thermometer", "s": "S6 p.131", "x": false}, {"fz": "冰点", "fe": "freezing point", "bz": "水开始变成冰的温度：0°C", "be": "temperature at which water starts to become ice: 0°C", "s": "S6 p.133, p.144", "x": false}, {"fz": "沸点", "fe": "boiling point", "bz": "水开始变成水蒸气的温度：100°C", "be": "temperature at which water starts to become vapour: 100°C", "s": "S6 p.133, p.144", "x": false}, {"fz": "室温", "fe": "room temperature", "bz": "热水搁置后会降到室温，然后不变", "be": "hot water cools to this, then stays the same", "s": "S6 p.134", "x": false}, {"fz": "受热", "fe": "gain heat", "bz": "变热、温度上升、膨胀", "be": "gets hotter, temperature rises, expands", "s": "S6 p.138, p.144", "x": false}, {"fz": "散热", "fe": "lose heat", "bz": "变冷、温度下降、收缩", "be": "gets colder, temperature falls, contracts", "s": "S6 p.138, p.144", "x": false}, {"fz": "膨胀", "fe": "expand", "bz": "体积变大", "be": "to get bigger in size", "s": "S6 p.138", "x": false}, {"fz": "收缩", "fe": "contract", "bz": "体积变小", "be": "to get smaller in size", "s": "S6 p.138", "x": false}, {"fz": "热胀冷缩", "fe": "thermal expansion and contraction", "bz": "物质受热膨胀，散热收缩", "be": "matter expands when heated and contracts when cooled", "s": "S6 p.138-142", "x": false}, {"fz": "本生灯", "fe": "Bunsen burner", "bz": "用来加热的实验仪器", "be": "laboratory burner used for heating", "s": "S6 p.133", "x": false}, {"fz": "铁轨之间的空隙", "fe": "gaps between railway tracks", "bz": "避免天热时铁轨膨胀变形", "be": "stop tracks bending when they expand in hot weather", "s": "S6 p.140", "x": false}, {"fz": "松弛的电线", "fe": "loose electric cables", "bz": "避免天冷时电线收缩被扯断", "be": "stop cables snapping when they contract in cold weather", "s": "S6 p.140", "x": false}, {"fz": "高架桥的空隙", "fe": "gaps in a flyover", "bz": "避免热天膨胀而裂开", "be": "stop it cracking when it expands in hot weather", "s": "S6 p.141", "x": false}, {"fz": "凹陷的乒乓球", "fe": "dented ping-pong ball", "bz": "放进热水，里面的空气膨胀，恢复原状", "be": "in hot water the air inside expands and the ball regains its shape", "s": "S6 p.142; S4 p.1 A6", "x": false}, {"fz": "冰", "fe": "ice (freezing water expands)", "bz": "水结成冰时会膨胀", "be": "water expands when it freezes", "s": "S6 p.138", "x": false}, {"fz": "消防喷头", "fe": "fire sprinkler", "bz": "应用热胀冷缩的用具", "be": "a device that uses thermal expansion", "s": "S6 p.144", "x": false}], "quiz": [{"qz": "温度是指什么？", "qe": "What is temperature?", "o": [["把物质变热的一种能", "a form of energy that heats matter"], ["物质的大小", "the size of matter"], ["物质的冷热程度", "how hot or cold matter is"], ["物质的重量", "the weight of matter"]], "a": 2, "tf": false, "ez": "温度是物质的冷热程度；热才是把物质变热的一种能。", "ee": "Temperature is how hot or cold matter is; heat is the energy that makes matter hot.", "s": "S6 p.144"}, {"qz": "温度的常用单位是什么？", "qe": "What is the usual unit of temperature?", "o": [["摄氏度（°C）", "degree Celsius (°C)"], ["克", "gram"], ["毫升", "millilitre"], ["厘米", "centimetre"]], "a": 0, "tf": false, "ez": "温度常用摄氏度（°C）来表示。", "ee": "Temperature is usually measured in degrees Celsius (°C).", "s": "S6 p.131; S3 p.13 3(a)"}, {"qz": "使用温度计时，玻璃泡可以碰到烧杯的底部。", "qe": "When using a thermometer, the bulb may touch the bottom of the beaker.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "烧杯底的温度与水温不同，会影响读数的准确性。", "ee": "The bottom of the beaker is at a different temperature from the water, which makes the reading inaccurate.", "s": "S6 p.132; S3 p.14 3(e)"}, {"qz": "水的冰点和沸点分别是多少？", "qe": "What are the freezing point and boiling point of water?", "o": [["100°C 和 0°C", "100°C and 0°C"], ["0°C 和 50°C", "0°C and 50°C"], ["25°C 和 100°C", "25°C and 100°C"], ["0°C 和 100°C", "0°C and 100°C"]], "a": 3, "tf": false, "ez": "水的冰点是 0°C，沸点是 100°C。", "ee": "The freezing point of water is 0°C and the boiling point is 100°C.", "s": "S6 p.133-134"}, {"qz": "水沸腾后继续加热，水的温度会继续上升。", "qe": "If you keep heating boiling water, its temperature keeps rising.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "水达到沸点（100°C）后，温度保持不变。", "ee": "Once water reaches its boiling point (100°C) the temperature stays the same.", "s": "S6 p.134, p.143; S5 p.9 1(d)"}, {"qz": "一杯热水搁置在室内很久后，水的温度会怎样？", "qe": "What happens to the temperature of a cup of hot water left in a room for a long time?", "o": [["一直上升", "keeps rising"], ["降到室温后保持不变", "falls to room temperature, then stays the same"], ["降到 0°C", "falls to 0°C"], ["降到比室温更低", "falls below room temperature"]], "a": 1, "tf": false, "ez": "热水散热，温度逐渐下降到室温，然后保持不变。", "ee": "The hot water loses heat and cools to room temperature, then stays the same.", "s": "S6 p.134"}, {"qz": "物质受热后会发生什么变化？", "qe": "What happens to matter when it gains heat?", "o": [["温度下降、收缩", "temperature falls, contracts"], ["温度下降、膨胀", "temperature falls, expands"], ["温度不变、收缩", "temperature stays the same, contracts"], ["温度上升、膨胀", "temperature rises, expands"]], "a": 3, "tf": false, "ez": "物质受热后变热、温度上升并膨胀。", "ee": "Matter that gains heat gets hotter, its temperature rises and it expands.", "s": "S6 p.138, p.144"}, {"qz": "铁球加热后会收缩，所以不能穿过铁环。", "qe": "An iron ball shrinks when heated, so it cannot pass through the ring.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "铁球受热后是膨胀，变大了，所以穿不过铁环。", "ee": "The ball expands (gets bigger) when heated, so it cannot pass through the ring.", "s": "S6 p.136"}, {"qz": "为什么火车铁轨之间要留空隙？", "qe": "Why are gaps left between railway tracks?", "o": [["为了让火车跑得更快", "to make trains go faster"], ["节省铁轨", "to save on tracks"], ["避免铁轨在天气热时膨胀变形", "to stop the tracks bending when they expand in hot weather"], ["让铁轨更好看", "to make the tracks look nicer"]], "a": 2, "tf": false, "ez": "铁轨受热膨胀，留空隙才不会变形。", "ee": "Tracks expand in the heat; the gaps stop them from bending.", "s": "S6 p.140, p.144"}, {"qz": "电线松弛地悬挂，是为了防止电线在天气冷时因收缩而被扯断。", "qe": "Electric cables hang loosely so they are not snapped by contraction in cold weather.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "天冷时电线收缩，松弛的电线才不会被拉断。", "ee": "Cables contract in cold weather; slack lets them avoid being pulled and snapped.", "s": "S6 p.140"}, {"qz": "把凹陷的乒乓球放进热水后，球恢复原状。这说明什么？", "qe": "A dented ping-pong ball is put into hot water and returns to its shape. What does this show?", "o": [["乒乓球内的空气遇热膨胀", "the air inside the ball expanded when heated"], ["热水被注入乒乓球内", "hot water went into the ball"], ["乒乓球遇热膨胀了", "the ping-pong ball itself expanded"], ["乒乓球的体积会减小", "the ball's volume decreased"]], "a": 0, "tf": false, "ez": "球内空气受热膨胀，把凹陷处顶起来。", "ee": "The air inside expands when heated and pushes the dent out.", "s": "S6 p.142; S4 p.1 A6, p.7"}, {"qz": "以下哪一项用具应用了热胀冷缩原理？", "qe": "Which device uses thermal expansion and contraction?", "o": [["放大镜", "magnifying glass"], ["温度计", "thermometer"], ["指南针", "compass"], ["天平", "balance"]], "a": 1, "tf": false, "ez": "温度计里的液柱随冷热膨胀或收缩而升降。", "ee": "The liquid in a thermometer expands or contracts, so the column rises or falls.", "s": "S6 p.144"}, {"qz": "把玻璃瓶（口上套着气球）放进80°C的水盆里，气球会怎样？", "qe": "A glass bottle with a balloon on its neck is put into a basin of 80°C water. What happens to the balloon?", "o": [["变得较小", "gets smaller"], ["没有变化", "no change"], ["变得较大", "gets bigger"], ["先变小后变大", "first smaller, then bigger"]], "a": 2, "tf": false, "ez": "瓶内空气受热膨胀，气球变大。", "ee": "The air in the bottle expands when heated, so the balloon gets bigger.", "s": "S6 p.145-146 (answer p.217)"}, {"qz": "为了让两个紧套在一起的玻璃杯分开，可以在上面的杯子加入冰块。", "qe": "To separate two glasses stuck together, you can put ice in the top glass.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "冰块使上杯冷却收缩，就容易分开。", "ee": "The ice cools the top glass so it contracts and the glasses separate.", "s": "S6 p.142, p.146"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'yc5sci-' + D.id;
+const $ = (s, r=document) => r.querySelector(s);
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>');}
+// tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+});
+// ---------- flashcards ----------
+let known = {}; try{known = JSON.parse(localStorage.getItem(KEY+'-cards')||'{}')}catch(e){}
+let order = D.cards.map((_,i)=>i), pos = 0, onlyAgain = false;
+function save(){try{localStorage.setItem(KEY+'-cards',JSON.stringify(known))}catch(e){}}
+function buildOrder(){ order = D.cards.map((_,i)=>i).filter(i=>!onlyAgain || known[i]!==1); if(!order.length){order=D.cards.map((_,i)=>i);onlyAgain=false;} pos=Math.min(pos,order.length-1); }
+function showCard(){
+  const i = order[pos], c = D.cards[i];
+  const card = $('#card'); card.classList.remove('flip');
+  $('#cf').innerHTML = `<div class="zh">${esc(c.fz)}</div><div class="en">${esc(c.fe)}</div><div class="meta">${c.x?'extra 补充 · ':''}${esc(c.s)} · 点击翻转 click to flip</div>`;
+  $('#cb').innerHTML = `<div class="zh">${esc(c.bz)}</div><div class="en">${esc(c.be)}</div><div class="meta">${esc(c.s)}</div>`;
+  $('#cpos').textContent = `${pos+1} / ${order.length}`;
+  const n = Object.values(known).filter(v=>v===1).length;
+  $('#cstat').textContent = `已记得 Got it: ${n} / ${D.cards.length}`;
+  $('#cbar').style.width = (100*n/D.cards.length)+'%';
+}
+$('#card').onclick = ()=>$('#card').classList.toggle('flip');
+$('#prev').onclick = ()=>{pos=(pos-1+order.length)%order.length;showCard()};
+$('#next').onclick = ()=>{pos=(pos+1)%order.length;showCard()};
+$('#got').onclick = ()=>{known[order[pos]]=1;save();$('#next').click()};
+$('#again').onclick = ()=>{known[order[pos]]=0;save();$('#next').click()};
+$('#shuf').onclick = ()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;showCard()};
+$('#flt').onclick = ()=>{onlyAgain=!onlyAgain;$('#flt').textContent=onlyAgain?'显示全部 Show all':'只练没记得的 Practise only unknown';pos=0;buildOrder();showCard()};
+$('#rst').onclick = ()=>{known={};save();onlyAgain=false;$('#flt').textContent='只练没记得的 Practise only unknown';buildOrder();pos=0;showCard()};
+document.addEventListener('keydown',e=>{ if(!$('#cards').classList.contains('on'))return; if(e.key===' '){e.preventDefault();$('#card').click()} if(e.key==='ArrowRight')$('#next').click(); if(e.key==='ArrowLeft')$('#prev').click();});
+buildOrder(); showCard();
+// ---------- quiz ----------
+let qs=[], qi=0, score=0, wrong=[];
+function startQuiz(){ qs=D.quiz.map((_,i)=>i); for(let i=qs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qs[i],qs[j]]=[qs[j],qs[i]]} qi=0;score=0;wrong=[]; renderQ(); }
+function renderQ(){
+  const box=$('#qarea');
+  if(qi>=qs.length){ return endQuiz(); }
+  const q=D.quiz[qs[qi]];
+  const opts = q.o.map((o,k)=>`<button class="opt" data-k="${k}"><div class="zh">${esc(o[0])}</div><div class="en">${esc(o[1])}</div></button>`).join('');
+  box.innerHTML = `<div class="qbox q"><div class="qnum">第 ${qi+1} / ${qs.length} 题 Question ${qi+1} of ${qs.length} · ${q.tf?'对错题 True / False':'选择题 Multiple choice'}</div>
+   <div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="opts">${opts}</div>
+   <div class="fb" id="fb"></div><div style="text-align:right;margin-top:10px"><button class="btn" id="nq" style="display:none">${qi+1<qs.length?'下一题 Next ➜':'看分数 See score ➜'}</button></div></div>`;
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k,q,b));
+  $('#nq').onclick=()=>{qi++;renderQ()};
+}
+function answer(k,q,btn){
+  const ok = k===q.a; if(ok)score++; else wrong.push(qs[qi]);
+  document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true; if(i===q.a)b.classList.add('right'); else if(b===btn)b.classList.add('wrong');});
+  const fb=$('#fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML = `<div class="zh"><b>${ok?'✔ 答对了！':'✘ 答错了。'}</b> ${esc(q.ez)}</div><div class="en"><b>${ok?'Correct!':'Not quite.'}</b> ${esc(q.ee)}</div><div class="src">来源 Source: ${esc(q.s)}</div>`;
+  $('#nq').style.display='inline-block';
+}
+function endQuiz(){
+  const n=qs.length, pct=Math.round(100*score/n);
+  const msg = pct>=90?'太棒了！Excellent!':pct>=70?'做得好！Well done!':pct>=50?'继续加油！Keep going!':'再看一遍笔记，再试一次。Review the notes and try again.';
+  try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');h.push({d:new Date().toISOString().slice(0,10),s:score,n:n});localStorage.setItem(KEY+'-quiz',JSON.stringify(h.slice(-20)))}catch(e){}
+  let hist=''; try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');hist='<div class="stat">最近成绩 Recent scores: '+h.slice(-5).map(x=>x.s+'/'+x.n).join(' · ')+'</div>'}catch(e){}
+  let w=''; if(wrong.length){w='<h3>要复习的题目 Questions to review</h3><ul class="wrongs">'+wrong.map(i=>{const q=D.quiz[i];return `<li><div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="stat">→ ${esc(q.o[q.a][0])} / ${esc(q.o[q.a][1])} <span class="src">${esc(q.s)}</span></div></li>`}).join('')+'</ul>'}
+  $('#qarea').innerHTML = `<div class="qbox score"><div class="big">${score} / ${n}</div><div style="font-size:22px">${msg}</div>${hist}<p><button class="btn" id="retry">再做一次 Try again</button></p>${w}</div>`;
+  $('#retry').onclick=startQuiz;
+}
+startQuiz();
+</script></body></html>

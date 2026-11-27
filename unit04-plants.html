@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>五年级科学 Unit 4 植物 · Std 5 Science Plants</title><style>
+:root{--c:#7a9a1f;--bg:#fffaf0;--ink:#25303b;--en:#1a6f8f;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","SimHei","WenQuanYi Micro Hei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--c);color:#fff;padding:18px 22px 10px}
+header .hi{font-size:17px;background:rgba(255,255,255,.2);display:inline-block;border-radius:14px;padding:4px 14px;margin-bottom:8px}header .hi .en{font-size:14px;opacity:.95;margin-left:6px}
+header h1{margin:0;font-size:28px} header h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:2px}
+header p{margin:6px 0 0;font-size:15px} header p .en{opacity:.9}
+nav{display:flex;gap:6px;background:var(--c);padding:0 16px;position:sticky;top:0;z-index:5}
+nav button{border:0;background:rgba(255,255,255,.22);color:#fff;font:inherit;font-size:17px;padding:10px 18px;border-radius:12px 12px 0 0;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--c);font-weight:700}
+main{max-width:900px;margin:0 auto;padding:18px}
+.pane{display:none}.pane.on{display:block}
+.sec{background:var(--card);border-radius:14px;padding:12px 18px 6px;margin:0 0 18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.sec h3{margin:6px 0 8px;font-size:21px;color:var(--c)} .sec h3 .en{display:block;font-size:15px;font-weight:400;color:var(--en)}
+.src{display:inline-block;font-size:12px;background:#eef2f5;color:#556;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:400;vertical-align:middle}
+.items{list-style:none;margin:0;padding:0}
+.it{padding:8px 0;border-top:1px dashed #e3e3e3} .it:first-child{border-top:0}
+.it .zh{font-size:19px} .it .en{font-size:14.5px;color:var(--en);margin-top:2px}
+mark{background:#fff0a6;padding:0 3px;border-radius:4px;font-weight:700;color:inherit}
+.en mark{background:#d9f1fb}
+header mark{color:#25303b}
+header .en mark{background:#e6f7ff}
+.opt{color:var(--ink)}.opt:disabled{color:var(--ink);cursor:default}.opt:disabled .en{color:var(--en)}
+.xbadge{font-size:11px;background:#e8e0ff;color:#5a3fb0;border-radius:9px;padding:1px 7px;vertical-align:middle}
+/* flashcards */
+.deckbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.btn{border:0;background:var(--c);color:#fff;font:inherit;font-size:16px;padding:8px 16px;border-radius:10px;cursor:pointer}
+.btn.alt{background:#e6e9ee;color:#333}.btn.good{background:#2e9e5b}.btn.bad{background:#d9534f}
+.btn:disabled{opacity:.4;cursor:default}
+.scene{perspective:1000px;margin:10px auto;max-width:620px}
+.card{position:relative;height:300px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.front{background:#fff;border:4px solid var(--c)} .back{background:#f3fbff;border:4px solid var(--en);transform:rotateY(180deg)}
+.face .zh{font-size:32px;font-weight:700} .face .en{font-size:21px;color:var(--en);margin-top:6px}
+.back .zh{font-size:24px;font-weight:600}.back .en{font-size:18px}
+.face .meta{position:absolute;bottom:10px;font-size:12px;color:#778}
+.hint{text-align:center;color:#667;font-size:14px}
+.pgbar{height:10px;background:#e4e4e4;border-radius:6px;overflow:hidden;margin:6px 0}.pgbar i{display:block;height:100%;background:#2e9e5b;width:0}
+.stat{font-size:15px;color:#445}
+/* quiz */
+.qbox{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.qnum{font-size:14px;color:#667}.q .zh{font-size:22px;font-weight:600}.q .en{font-size:16px;color:var(--en)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{border:2px solid #cfd8e0;background:#fff;border-radius:12px;padding:10px 14px;text-align:left;font:inherit;cursor:pointer}
+.opt .zh{font-size:19px}.opt .en{font-size:14px;color:var(--en)}
+.opt:hover:not(:disabled){border-color:var(--c);background:#fffbe9}
+.opt.right{border-color:#2e9e5b;background:#e3f6ea}.opt.wrong{border-color:#d9534f;background:#fde7e6}
+.fb{display:none;border-radius:12px;padding:12px 14px;margin-top:8px}
+.fb.show{display:block}.fb.ok{background:#e3f6ea}.fb.no{background:#fde7e6}
+.fb .zh{font-size:17px}.fb .en{font-size:14px;color:var(--en)}.fb .src{margin:6px 0 0}
+.score{text-align:center;padding:20px}.score .big{font-size:56px;font-weight:800;color:var(--c)}
+.wrongs li{margin:8px 0}
+footer{text-align:center;color:#889;font-size:12px;padding:20px}
+@media print{nav,.deckbar,.btn{display:none}.pane{display:block!important}.card{height:auto}}
+</style></head>
+<body>
+<header><div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div><p style="margin:8px 0 0"><a href="./" style="color:#fff;text-decoration:none;font-size:15px;opacity:.95">🏠 首页 Home</a></p><h1>单元 4：植物<small>Unit 4: Plants</small></h1>
+<p>这一单元学习植物怎样<mark>保护自己</mark>、<mark>适应恶劣气候</mark>，以及种子和果实的<mark>传播方法</mark>。<br><span class="en">This unit covers how plants <mark>protect themselves</mark>, <mark>adapt to harsh climates</mark>, and the ways <mark>seeds and fruits are dispersed</mark>.</span></p>
+<p style="font-size:12px;opacity:.85">五年级科学 Year 5 Science · KSSR Semakan · 来源 Source: S1 p.28-34 (Tunas Pelangi 科学 5A)</p></header>
+<nav><button class="on" data-p="notes">📖 笔记 Notes</button><button data-p="cards">🃏 闪卡 Flashcards (22)</button><button data-p="quiz">✅ 测验 Quiz (14)</button></nav>
+<main>
+<div id="notes" class="pane on"><section class="sec"><h3><span class="zh">4.1 植物的物种生存</span><span class="en">4.1 Survival of Plant Species</span><span class="src">S1 p.28-30, J-5, 课本 Textbook S6 p.82-92</span></h3><ul class="items">
+<li class="it"><div class="zh">植物有不同的方法保护自己，避免被动物吃掉： </div><div class="en">Plants protect themselves in different ways so that animals do not eat them:</div></li>
+<li class="it"><div class="zh"><mark>尖刺</mark>：刺伤靠近的动物。例：玫瑰、仙人掌。 </div><div class="en"><mark>Thorns</mark>: prick animals that come near. e.g. rose, cactus.</div></li>
+<li class="it"><div class="zh"><mark>胶乳</mark>：黏黏的液体，会让皮肤发痒。例：菠萝蜜、木瓜、羊角豆。 </div><div class="en"><mark>Latex</mark>: a sticky liquid that can make skin itch. e.g. jackfruit, papaya, okra.</div></li>
+<li class="it"><div class="zh"><mark>细毛</mark>：碰到会让皮肤发痒。例：甘蔗、南瓜。 </div><div class="en"><mark>Fine hairs</mark>: make the skin itch when touched. e.g. sugarcane, pumpkin.</div></li>
+<li class="it"><div class="zh"><mark>毒素</mark>：误食会中毒，甚至死亡。例：软枝黄蝉、海檬果、夹竹桃。 </div><div class="en"><mark>Toxins (poison)</mark>: eating them can poison or even kill. e.g. yellow allamanda, sea mango (pong-pong), oleander.</div></li>
+<li class="it"><div class="zh"><mark>臭味</mark>：气味强烈，某些害虫避而远之。例：莱佛士花、九层塔。 </div><div class="en"><mark>Foul or strong smell</mark>: the strong smell keeps some pests away. e.g. Rafflesia, basil.</div></li>
+<li class="it"><div class="zh">含羞草的刺会刺伤靠近的动物。 </div><div class="en">The touch-me-not plant has thorns that prick animals that come near.</div></li>
+<li class="it"><div class="zh"><mark>适应恶劣气候</mark>（例：沙漠里的仙人掌）： </div><div class="en"><mark>Adapting to harsh climates</mark> (e.g. the cactus in the desert):</div></li>
+<li class="it"><div class="zh">蜡质层：锁住水分，避免水分流失。 </div><div class="en">Waxy layer: locks in water so water is not lost.</div></li>
+<li class="it"><div class="zh">粗厚的茎：储存水分。 </div><div class="en">Thick stem: stores water.</div></li>
+<li class="it"><div class="zh">针状叶：叶面面积小，减少水分流失。 </div><div class="en">Needle-like leaves: small surface area, so less water is lost.</div></li>
+<li class="it"><div class="zh">长根：伸到土壤深处寻找水源。 </div><div class="en">Long roots: reach deep into the soil to find water.</div></li>
+<li class="it"><div class="zh">橡胶树在干旱的季节会落叶，减少水分流失。 </div><div class="en">Rubber trees shed their leaves in the dry season to reduce water loss.</div></li>
+<li class="it"><div class="zh"><mark>抵抗强风</mark>（例：椰子树）：羽状的叶子让风穿过，坚韧有弹性的茎不容易折断。 </div><div class="en"><mark>Resisting strong wind</mark> (e.g. coconut palm): feather-like leaves let wind pass through, and a tough, flexible trunk does not break easily.</div></li>
+</ul></section>
+<section class="sec"><h3><span class="zh">4.2 植物的传播方法</span><span class="en">4.2 Methods of Seed and Fruit Dispersal</span><span class="src">S1 p.31-32, J-6, 课本 Textbook S6 p.93-104</span></h3><ul class="items">
+<li class="it"><div class="zh">植物传播种子或果实，让新的植物能生长，物种才能生存。 </div><div class="en">Plants disperse seeds or fruits so new plants can grow and the species survives.</div></li>
+<li class="it"><div class="zh"><mark>靠风力</mark>：种子细小轻盈，有薄翅或伞状结构。例：蒲公英。 </div><div class="en"><mark>By wind</mark>: seeds are small and light, with thin wings or umbrella-like parts. e.g. dandelion.</div></li>
+<li class="it"><div class="zh"><mark>靠水力</mark>：有蜡质外皮，壳内有纤维和气室，能浮在水面。例：椰子、莲蓬。 </div><div class="en"><mark>By water</mark>: have a waxy outer skin, with fibre and air spaces inside the husk so they float. e.g. coconut, lotus seed pod.</div></li>
+<li class="it"><div class="zh"><mark>靠自动爆裂</mark>：果实成熟后变得干瘪，裂开时把种子弹出去。例：橡胶树。 </div><div class="en"><mark>By self-explosion (bursting)</mark>: the fruit dries out when ripe and splits open, flinging the seeds out. e.g. rubber tree.</div></li>
+<li class="it"><div class="zh"><mark>靠动物</mark>：果实鲜艳、果肉香甜，被动物吃掉后，种子随粪便排出。例：芒果、番石榴。 </div><div class="en"><mark>By animals</mark>: bright, sweet-smelling fleshy fruit is eaten, and the seeds are passed out in droppings. e.g. mango, guava.</div></li>
+<li class="it"><div class="zh"><mark>靠人类或动物</mark>：种子或果实长有钩刺，勾在动物的毛或人的衣服上。例：梵天花。 </div><div class="en"><mark>By humans or animals</mark>: seeds or fruits with hooks cling to animal fur or clothes. e.g. Urena (hooked burr).</div></li>
+<li class="it"><div class="zh">种子离母树越远，与母树抢阳光、水和养料的竞争越少，幼苗能长得更好。 </div><div class="en">The farther seeds land from the mother plant, the less they compete with it for sunlight, water and nutrients, so the seedlings grow better.</div></li>
+<li class="it"><div class="zh">动物和植物互相帮助：植物给动物食物，动物帮植物传播种子。 </div><div class="en">Animals and plants help each other: plants provide food for animals, and animals help plants disperse seeds.</div></li>
+<li class="it"><div class="zh">植物利用动物呼出的二氧化碳进行光合作用，释放动物需要的氧气。两者的生存，为了维持生态平衡，避免物种绝灭。 </div><div class="en">Plants use the carbon dioxide animals breathe out for photosynthesis and release oxygen that animals need. Both help to keep the ecological balance and avoid species becoming extinct.</div></li>
+</ul></section><p class="hint">标有 <span class="xbadge">extra 补充</span> 的是课本/练习册以外的补充说明。 Items marked <span class="xbadge">extra</span> are extra explanations beyond the workbook/textbook.</p></div>
+<div id="cards" class="pane">
+ <div class="deckbar"><button class="btn alt" id="shuf">🔀 打乱 Shuffle</button><button class="btn alt" id="flt">只练没记得的 Practise only unknown</button><button class="btn alt" id="rst">重设 Reset</button></div>
+ <div class="pgbar"><i id="cbar"></i></div><div class="stat" id="cstat"></div>
+ <div class="scene"><div class="card" id="card"><div class="face front" id="cf"></div><div class="face back" id="cb"></div></div></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn alt" id="prev">⬅ 上一张</button><span id="cpos" class="stat"></span><button class="btn alt" id="next">下一张 ➡</button></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn bad" id="again">✘ 再练 Again</button><button class="btn good" id="got">✔ 记得 Got it</button></div>
+ <p class="hint">点卡片翻转（或按空格键）。 Click the card (or press Space) to flip.</p>
+</div>
+<div id="quiz" class="pane"><div id="qarea"></div></div>
+</main>
+<footer>Study Buddy · 五年级科学 · Unit 4 · 不需要网络 works offline</footer>
+<script type="application/json" id="data">{"id": "U4", "cards": [{"fz": "尖刺（植物）", "fe": "thorns", "bz": "刺伤靠近的动物，例：玫瑰、仙人掌", "be": "prick animals that come near, e.g. rose, cactus", "s": "S1 p.28, J-5", "x": false}, {"fz": "胶乳", "fe": "latex", "bz": "黏黏的液体，让皮肤发痒，例：木瓜", "be": "sticky liquid that makes skin itch, e.g. papaya", "s": "S1 p.28, J-5", "x": false}, {"fz": "细毛", "fe": "fine hairs", "bz": "碰到会发痒，例：甘蔗、南瓜", "be": "itchy when touched, e.g. sugarcane, pumpkin", "s": "S1 p.28, J-5", "x": false}, {"fz": "毒素", "fe": "toxin", "bz": "误食会中毒，例：夹竹桃", "be": "poison if eaten, e.g. oleander", "s": "S1 p.28-29, J-5", "x": false}, {"fz": "臭味", "fe": "foul smell", "bz": "让害虫避而远之，例：莱佛士花", "be": "keeps pests away, e.g. Rafflesia", "s": "S1 p.28-29, J-5", "x": false}, {"fz": "蜡质层", "fe": "waxy layer", "bz": "锁住水分，避免水分流失", "be": "locks in water so it is not lost", "s": "S1 p.30, J-5", "x": false}, {"fz": "粗厚的茎", "fe": "thick stem", "bz": "储存水分", "be": "stores water", "s": "S1 p.30, J-5", "x": false}, {"fz": "针状叶", "fe": "needle-like leaves", "bz": "叶面小，减少水分流失", "be": "small leaf surface, less water loss", "s": "S1 p.30, J-5", "x": false}, {"fz": "长根", "fe": "long roots", "bz": "伸到土壤深处找水源", "be": "reach deep soil for water", "s": "S1 p.30, J-5", "x": false}, {"fz": "落叶", "fe": "shed leaves", "bz": "干旱季节减少水分流失（橡胶树）", "be": "reduces water loss in dry season (rubber tree)", "s": "S1 p.30", "x": false}, {"fz": "羽状的叶子", "fe": "feather-like leaves", "bz": "让风穿过，减少强风的阻力（椰子树）", "be": "let wind pass through, reducing wind resistance (coconut palm)", "s": "S1 p.30, J-5; S1 p.33", "x": false}, {"fz": "靠风力传播", "fe": "dispersal by wind", "bz": "细小轻盈，有薄翅或伞状（蒲公英）", "be": "small and light, with wings or umbrella shape (dandelion)", "s": "S1 p.31, J-6", "x": false}, {"fz": "靠水力传播", "fe": "dispersal by water", "bz": "蜡质外皮、纤维和气室，能浮（椰子）", "be": "waxy skin, fibre and air spaces float (coconut)", "s": "S1 p.31, J-6", "x": false}, {"fz": "靠自动爆裂传播", "fe": "dispersal by self-explosion", "bz": "果实干了裂开，把种子弹出（橡胶树）", "be": "dry fruit splits and flings seeds (rubber tree)", "s": "S1 p.31, J-6", "x": false}, {"fz": "靠动物传播", "fe": "dispersal by animals", "bz": "果肉香甜被吃掉，或钩刺勾在毛上", "be": "sweet fruit eaten, or hooks cling to fur", "s": "S1 p.31-32, J-6", "x": false}, {"fz": "蒲公英", "fe": "dandelion", "bz": "种子靠风力传播", "be": "seeds dispersed by wind", "s": "S1 p.31, J-6", "x": false}, {"fz": "椰子", "fe": "coconut", "bz": "果实靠水力传播", "be": "fruit dispersed by water", "s": "S1 p.31, J-6", "x": false}, {"fz": "种子", "fe": "seed", "bz": "长成新植物", "be": "grows into a new plant", "s": "S1 p.32", "x": false}, {"fz": "果实", "fe": "fruit", "bz": "里面有种子", "be": "contains seeds", "s": "S1 p.31", "x": false}, {"fz": "幼苗", "fe": "seedling", "bz": "刚发芽的小植物", "be": "a young plant that has just sprouted", "s": "S2 p.41", "x": true}, {"fz": "母树", "fe": "mother tree (parent plant)", "bz": "产生种子的植物", "be": "the plant that produces the seeds", "s": "S1 p.33; S2 p.41", "x": false}, {"fz": "生态平衡", "fe": "ecological balance", "bz": "动物和植物互相帮助，维持平衡", "be": "animals and plants help each other to keep balance", "s": "S1 p.32, J-6", "x": false}], "quiz": [{"qz": "玫瑰和仙人掌用什么方法保护自己？", "qe": "How do roses and cacti protect themselves?", "o": [["尖刺", "thorns"], ["细毛", "fine hairs"], ["毒素", "toxins"], ["胶乳", "latex"]], "a": 0, "tf": false, "ez": "尖刺会刺伤靠近的动物。", "ee": "Thorns prick animals that come near.", "s": "S1 p.28, J-5"}, {"qz": "木瓜和菠萝蜜含有黏黏的液体，叫什么？", "qe": "Papaya and jackfruit contain a sticky liquid. What is it called?", "o": [["胶乳", "latex"], ["毒素", "toxin"], ["蜡", "wax"], ["汁水", "juice"]], "a": 0, "tf": false, "ez": "胶乳是植物的自卫特征之一。", "ee": "Latex is one of the plant's defences.", "s": "S1 p.28, J-5"}, {"qz": "夹竹桃和软枝黄蝉靠什么自卫？", "qe": "What do oleander and yellow allamanda use for defence?", "o": [["毒素", "toxins"], ["尖刺", "thorns"], ["臭味", "foul smell"], ["细毛", "fine hairs"]], "a": 0, "tf": false, "ez": "误食会中毒。", "ee": "Eating them can poison you.", "s": "S1 p.28-29, J-5; S4 p.1 Q4"}, {"qz": "莱佛士花散发强烈的臭味，有什么作用？", "qe": "Rafflesia gives out a strong smell. What is it for?", "o": [["让某些害虫避而远之", "to keep some pests away"], ["吸收阳光", "to absorb sunlight"], ["储存水分", "to store water"], ["让种子飞远", "to make seeds fly far"]], "a": 0, "tf": false, "ez": "强烈的气味是一种自卫方法。", "ee": "A strong smell is a form of defence.", "s": "S1 p.29, J-5"}, {"qz": "仙人掌的针状叶有什么作用？", "qe": "What does the cactus's needle-like leaf do?", "o": [["减少水分流失", "reduces water loss"], ["储存水分", "stores water"], ["寻找水源", "looks for water"], ["吸引昆虫", "attracts insects"]], "a": 0, "tf": false, "ez": "叶面面积小，水分不容易流失。", "ee": "The small leaf surface means water is not lost easily.", "s": "S1 p.30, J-5; S1 p.33 J-6"}, {"qz": "仙人掌的哪个部分储存水分？", "qe": "Which part of a cactus stores water?", "o": [["粗厚的茎", "thick stem"], ["针状叶", "needle-like leaves"], ["长根", "long roots"], ["花", "flower"]], "a": 0, "tf": false, "ez": "粗厚的茎储存水分。", "ee": "The thick stem stores water.", "s": "S1 p.30, J-5"}, {"qz": "仙人掌的长根能伸到土壤深处寻找水源。", "qe": "A cactus's long roots reach deep into the soil to find water.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "长根帮助仙人掌在干旱的地方生存。", "ee": "Long roots help the cactus survive in dry places.", "s": "S1 p.30, J-5"}, {"qz": "椰子树的哪个特征能减少强风的阻力？", "qe": "Which feature of the coconut palm reduces wind resistance?", "o": [["羽状的叶子", "feather-like leaves"], ["粗厚的树皮", "thick bark"], ["多而细的须根", "many fine roots"], ["蜡质层", "waxy layer"]], "a": 0, "tf": false, "ez": "羽状的叶子让风穿过。", "ee": "Feather-like leaves let wind pass through.", "s": "S1 p.33, J-6"}, {"qz": "蒲公英的种子靠什么传播？", "qe": "How are dandelion seeds dispersed?", "o": [["风力", "wind"], ["水力", "water"], ["自动爆裂", "self-explosion"], ["动物", "animals"]], "a": 0, "tf": false, "ez": "种子细小轻盈，有伞状结构。", "ee": "The seeds are small and light, with an umbrella-like structure.", "s": "S1 p.31, J-6"}, {"qz": "椰子靠什么传播？为什么？", "qe": "How are coconuts dispersed, and why?", "o": [["水力：有蜡质外皮、纤维和气室，能浮", "water: waxy skin, fibre and air spaces let it float"], ["风力：很轻", "wind: very light"], ["自动爆裂：果实会裂开", "self-explosion: the fruit splits open"], ["动物：果肉香甜", "animals: sweet flesh"]], "a": 0, "tf": false, "ez": "椰子靠水力传播。", "ee": "Coconuts are dispersed by water.", "s": "S1 p.31, J-6"}, {"qz": "橡胶树的果实成熟后变干、裂开，把种子弹出去。这是哪种传播方法？", "qe": "A rubber tree's fruit dries and splits open, flinging out the seeds. Which dispersal method is this?", "o": [["自动爆裂", "self-explosion"], ["风力", "wind"], ["水力", "water"], ["动物", "animals"]], "a": 0, "tf": false, "ez": "靠果实自己爆裂把种子弹开。", "ee": "The fruit bursts open by itself to fling the seeds.", "s": "S1 p.31, J-6"}, {"qz": "梵天花的种子长有钩刺。它靠什么传播？", "qe": "Urena seeds have hooks. How are they dispersed?", "o": [["人类或动物", "humans or animals"], ["风力", "wind"], ["水力", "water"], ["自动爆裂", "self-explosion"]], "a": 0, "tf": false, "ez": "钩刺会勾在动物的毛或人的衣服上。", "ee": "The hooks cling to animal fur or clothing.", "s": "S1 p.31, J-6; S1 p.33"}, {"qz": "种子离母树越近，幼苗越容易长得好。", "qe": "The closer seeds land to the mother plant, the better the seedlings grow.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "离母树越近，竞争阳光、水和养料越激烈，所以种子要传播到远处。", "ee": "Closer to the mother plant means more competition for sunlight, water and nutrients, so seeds need to be dispersed far away.", "s": "S1 p.33, J-6"}, {"qz": "植物利用动物呼出的二氧化碳进行光合作用。", "qe": "Plants use the carbon dioxide breathed out by animals for photosynthesis.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "动植物互相帮助，维持生态平衡。", "ee": "Animals and plants help each other and keep the ecological balance.", "s": "S1 p.32, J-6"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'yc5sci-' + D.id;
+const $ = (s, r=document) => r.querySelector(s);
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>');}
+// tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+});
+// ---------- flashcards ----------
+let known = {}; try{known = JSON.parse(localStorage.getItem(KEY+'-cards')||'{}')}catch(e){}
+let order = D.cards.map((_,i)=>i), pos = 0, onlyAgain = false;
+function save(){try{localStorage.setItem(KEY+'-cards',JSON.stringify(known))}catch(e){}}
+function buildOrder(){ order = D.cards.map((_,i)=>i).filter(i=>!onlyAgain || known[i]!==1); if(!order.length){order=D.cards.map((_,i)=>i);onlyAgain=false;} pos=Math.min(pos,order.length-1); }
+function showCard(){
+  const i = order[pos], c = D.cards[i];
+  const card = $('#card'); card.classList.remove('flip');
+  $('#cf').innerHTML = `<div class="zh">${esc(c.fz)}</div><div class="en">${esc(c.fe)}</div><div class="meta">${c.x?'extra 补充 · ':''}${esc(c.s)} · 点击翻转 click to flip</div>`;
+  $('#cb').innerHTML = `<div class="zh">${esc(c.bz)}</div><div class="en">${esc(c.be)}</div><div class="meta">${esc(c.s)}</div>`;
+  $('#cpos').textContent = `${pos+1} / ${order.length}`;
+  const n = Object.values(known).filter(v=>v===1).length;
+  $('#cstat').textContent = `已记得 Got it: ${n} / ${D.cards.length}`;
+  $('#cbar').style.width = (100*n/D.cards.length)+'%';
+}
+$('#card').onclick = ()=>$('#card').classList.toggle('flip');
+$('#prev').onclick = ()=>{pos=(pos-1+order.length)%order.length;showCard()};
+$('#next').onclick = ()=>{pos=(pos+1)%order.length;showCard()};
+$('#got').onclick = ()=>{known[order[pos]]=1;save();$('#next').click()};
+$('#again').onclick = ()=>{known[order[pos]]=0;save();$('#next').click()};
+$('#shuf').onclick = ()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;showCard()};
+$('#flt').onclick = ()=>{onlyAgain=!onlyAgain;$('#flt').textContent=onlyAgain?'显示全部 Show all':'只练没记得的 Practise only unknown';pos=0;buildOrder();showCard()};
+$('#rst').onclick = ()=>{known={};save();onlyAgain=false;$('#flt').textContent='只练没记得的 Practise only unknown';buildOrder();pos=0;showCard()};
+document.addEventListener('keydown',e=>{ if(!$('#cards').classList.contains('on'))return; if(e.key===' '){e.preventDefault();$('#card').click()} if(e.key==='ArrowRight')$('#next').click(); if(e.key==='ArrowLeft')$('#prev').click();});
+buildOrder(); showCard();
+// ---------- quiz ----------
+let qs=[], qi=0, score=0, wrong=[];
+function startQuiz(){ qs=D.quiz.map((_,i)=>i); for(let i=qs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qs[i],qs[j]]=[qs[j],qs[i]]} qi=0;score=0;wrong=[]; renderQ(); }
+function renderQ(){
+  const box=$('#qarea');
+  if(qi>=qs.length){ return endQuiz(); }
+  const q=D.quiz[qs[qi]];
+  const opts = q.o.map((o,k)=>`<button class="opt" data-k="${k}"><div class="zh">${esc(o[0])}</div><div class="en">${esc(o[1])}</div></button>`).join('');
+  box.innerHTML = `<div class="qbox q"><div class="qnum">第 ${qi+1} / ${qs.length} 题 Question ${qi+1} of ${qs.length} · ${q.tf?'对错题 True / False':'选择题 Multiple choice'}</div>
+   <div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="opts">${opts}</div>
+   <div class="fb" id="fb"></div><div style="text-align:right;margin-top:10px"><button class="btn" id="nq" style="display:none">${qi+1<qs.length?'下一题 Next ➜':'看分数 See score ➜'}</button></div></div>`;
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k,q,b));
+  $('#nq').onclick=()=>{qi++;renderQ()};
+}
+function answer(k,q,btn){
+  const ok = k===q.a; if(ok)score++; else wrong.push(qs[qi]);
+  document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true; if(i===q.a)b.classList.add('right'); else if(b===btn)b.classList.add('wrong');});
+  const fb=$('#fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML = `<div class="zh"><b>${ok?'✔ 答对了！':'✘ 答错了。'}</b> ${esc(q.ez)}</div><div class="en"><b>${ok?'Correct!':'Not quite.'}</b> ${esc(q.ee)}</div><div class="src">来源 Source: ${esc(q.s)}</div>`;
+  $('#nq').style.display='inline-block';
+}
+function endQuiz(){
+  const n=qs.length, pct=Math.round(100*score/n);
+  const msg = pct>=90?'太棒了！Excellent!':pct>=70?'做得好！Well done!':pct>=50?'继续加油！Keep going!':'再看一遍笔记，再试一次。Review the notes and try again.';
+  try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');h.push({d:new Date().toISOString().slice(0,10),s:score,n:n});localStorage.setItem(KEY+'-quiz',JSON.stringify(h.slice(-20)))}catch(e){}
+  let hist=''; try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');hist='<div class="stat">最近成绩 Recent scores: '+h.slice(-5).map(x=>x.s+'/'+x.n).join(' · ')+'</div>'}catch(e){}
+  let w=''; if(wrong.length){w='<h3>要复习的题目 Questions to review</h3><ul class="wrongs">'+wrong.map(i=>{const q=D.quiz[i];return `<li><div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="stat">→ ${esc(q.o[q.a][0])} / ${esc(q.o[q.a][1])} <span class="src">${esc(q.s)}</span></div></li>`}).join('')+'</ul>'}
+  $('#qarea').innerHTML = `<div class="qbox score"><div class="big">${score} / ${n}</div><div style="font-size:22px">${msg}</div>${hist}<p><button class="btn" id="retry">再做一次 Try again</button></p>${w}</div>`;
+  $('#retry').onclick=startQuiz;
+}
+startQuiz();
+</script></body></html>
