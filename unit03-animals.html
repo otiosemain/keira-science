@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>五年级科学 Unit 3 动物 · Std 5 Science Animals</title><style>
+:root{--c:#2e9e5b;--bg:#fffaf0;--ink:#25303b;--en:#1a6f8f;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","SimHei","WenQuanYi Micro Hei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--c);color:#fff;padding:18px 22px 10px}
+header .hi{font-size:17px;background:rgba(255,255,255,.2);display:inline-block;border-radius:14px;padding:4px 14px;margin-bottom:8px}header .hi .en{font-size:14px;opacity:.95;margin-left:6px}
+header h1{margin:0;font-size:28px} header h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:2px}
+header p{margin:6px 0 0;font-size:15px} header p .en{opacity:.9}
+nav{display:flex;gap:6px;background:var(--c);padding:0 16px;position:sticky;top:0;z-index:5}
+nav button{border:0;background:rgba(255,255,255,.22);color:#fff;font:inherit;font-size:17px;padding:10px 18px;border-radius:12px 12px 0 0;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--c);font-weight:700}
+main{max-width:900px;margin:0 auto;padding:18px}
+.pane{display:none}.pane.on{display:block}
+.sec{background:var(--card);border-radius:14px;padding:12px 18px 6px;margin:0 0 18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.sec h3{margin:6px 0 8px;font-size:21px;color:var(--c)} .sec h3 .en{display:block;font-size:15px;font-weight:400;color:var(--en)}
+.src{display:inline-block;font-size:12px;background:#eef2f5;color:#556;border-radius:10px;padding:1px 9px;margin-left:8px;font-weight:400;vertical-align:middle}
+.items{list-style:none;margin:0;padding:0}
+.it{padding:8px 0;border-top:1px dashed #e3e3e3} .it:first-child{border-top:0}
+.it .zh{font-size:19px} .it .en{font-size:14.5px;color:var(--en);margin-top:2px}
+mark{background:#fff0a6;padding:0 3px;border-radius:4px;font-weight:700;color:inherit}
+.en mark{background:#d9f1fb}
+header mark{color:#25303b}
+header .en mark{background:#e6f7ff}
+.opt{color:var(--ink)}.opt:disabled{color:var(--ink);cursor:default}.opt:disabled .en{color:var(--en)}
+.xbadge{font-size:11px;background:#e8e0ff;color:#5a3fb0;border-radius:9px;padding:1px 7px;vertical-align:middle}
+/* flashcards */
+.deckbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.btn{border:0;background:var(--c);color:#fff;font:inherit;font-size:16px;padding:8px 16px;border-radius:10px;cursor:pointer}
+.btn.alt{background:#e6e9ee;color:#333}.btn.good{background:#2e9e5b}.btn.bad{background:#d9534f}
+.btn:disabled{opacity:.4;cursor:default}
+.scene{perspective:1000px;margin:10px auto;max-width:620px}
+.card{position:relative;height:300px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.front{background:#fff;border:4px solid var(--c)} .back{background:#f3fbff;border:4px solid var(--en);transform:rotateY(180deg)}
+.face .zh{font-size:32px;font-weight:700} .face .en{font-size:21px;color:var(--en);margin-top:6px}
+.back .zh{font-size:24px;font-weight:600}.back .en{font-size:18px}
+.face .meta{position:absolute;bottom:10px;font-size:12px;color:#778}
+.hint{text-align:center;color:#667;font-size:14px}
+.pgbar{height:10px;background:#e4e4e4;border-radius:6px;overflow:hidden;margin:6px 0}.pgbar i{display:block;height:100%;background:#2e9e5b;width:0}
+.stat{font-size:15px;color:#445}
+/* quiz */
+.qbox{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c)}
+.qnum{font-size:14px;color:#667}.q .zh{font-size:22px;font-weight:600}.q .en{font-size:16px;color:var(--en)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{border:2px solid #cfd8e0;background:#fff;border-radius:12px;padding:10px 14px;text-align:left;font:inherit;cursor:pointer}
+.opt .zh{font-size:19px}.opt .en{font-size:14px;color:var(--en)}
+.opt:hover:not(:disabled){border-color:var(--c);background:#fffbe9}
+.opt.right{border-color:#2e9e5b;background:#e3f6ea}.opt.wrong{border-color:#d9534f;background:#fde7e6}
+.fb{display:none;border-radius:12px;padding:12px 14px;margin-top:8px}
+.fb.show{display:block}.fb.ok{background:#e3f6ea}.fb.no{background:#fde7e6}
+.fb .zh{font-size:17px}.fb .en{font-size:14px;color:var(--en)}.fb .src{margin:6px 0 0}
+.score{text-align:center;padding:20px}.score .big{font-size:56px;font-weight:800;color:var(--c)}
+.wrongs li{margin:8px 0}
+footer{text-align:center;color:#889;font-size:12px;padding:20px}
+@media print{nav,.deckbar,.btn{display:none}.pane{display:block!important}.card{height:auto}}
+</style></head>
+<body>
+<header><div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div><p style="margin:8px 0 0"><a href="./" style="color:#fff;text-decoration:none;font-size:15px;opacity:.95">🏠 首页 Home</a></p><h1>单元 3：动物<small>Unit 3: Animals</small></h1>
+<p>这一单元学习动物怎样<mark>保护自己</mark>、<mark>适应恶劣气候</mark>、<mark>繁殖后代</mark>，以及生物之间的<mark>食物链</mark>和<mark>食物网</mark>。<br><span class="en">This unit covers how animals <mark>protect themselves</mark>, <mark>adapt to harsh climates</mark>, <mark>reproduce</mark>, and the <mark>food chains</mark> and <mark>food webs</mark> between living things.</span></p>
+<p style="font-size:12px;opacity:.85">五年级科学 Year 5 Science · KSSR Semakan · 来源 Source: S1 p.18-27 (Tunas Pelangi 科学 5A)</p></header>
+<nav><button class="on" data-p="notes">📖 笔记 Notes</button><button data-p="cards">🃏 闪卡 Flashcards (24)</button><button data-p="quiz">✅ 测验 Quiz (15)</button></nav>
+<main>
+<div id="notes" class="pane on"><section class="sec"><h3><span class="zh">3.1 动物的物种生存</span><span class="en">3.1 Survival of Animal Species</span><span class="src">S1 p.18-22, J-3, J-4, 课本 Textbook S6 p.42-61</span></h3><ul class="items">
+<li class="it"><div class="zh">动物必须确保<mark>物种</mark>的生存，让<mark>后代</mark>继续延续，避免<mark>绝种</mark>。 </div><div class="en">Animals must make sure their <mark>species</mark> survives, so that <mark>offspring</mark> continue and the species does not become <mark>extinct</mark>.</div></li>
+<li class="it"><div class="zh">动物用<mark>外形特征</mark>或<mark>特殊本能</mark>来保护自己，以及适应寒冷或炎热的气候。 </div><div class="en">Animals use <mark>physical characteristics</mark> or <mark>special instincts</mark> to protect themselves and to adapt to cold or hot climates.</div></li>
+<li class="it"><div class="zh"><mark>自卫方法</mark>： </div><div class="en"><mark>Ways animals defend themselves:</mark></div></li>
+<li class="it"><div class="zh">尖刺（例：针鼹、豪猪）：让敌人不敢靠近。 </div><div class="en">Spines (e.g. echidna, porcupine): stop enemies from coming near.</div></li>
+<li class="it"><div class="zh">坚硬的鳞片（例：穿山甲）：保护身体，避免被擦伤或咬伤。 </div><div class="en">Hard scales (e.g. pangolin): protect the body from scratches and bites.</div></li>
+<li class="it"><div class="zh">难闻的气味（例：臭鼬）：让敌人感到不适。 </div><div class="en">Foul smell (e.g. skunk): makes enemies uncomfortable.</div></li>
+<li class="it"><div class="zh">喷出黑墨（例：鱿鱼）：干扰敌人的视线，趁机逃跑。 </div><div class="en">Squirting ink (e.g. squid): blocks the enemy&#x27;s view so the animal can escape.</div></li>
+<li class="it"><div class="zh">自断身体部位（例：壁虎）：引开敌人的注意力，趁机逃跑。 </div><div class="en">Shedding a body part (e.g. gecko): distracts the enemy so the animal can escape.</div></li>
+<li class="it"><div class="zh">伪装（例：变色龙）：身体颜色与环境融合，不容易被敌人发现。 </div><div class="en">Camouflage (e.g. chameleon): body colour blends with the surroundings so enemies cannot easily see it.</div></li>
+<li class="it"><div class="zh">其他自卫方法：角（鹿、犀牛）、假眼睛（蝴蝶）、缩进壳里（乌龟、蜗牛）、体形膨胀（河豚）、毒刺（蝎子）、群居（大象）、强壮的腿（斑马）。 </div><div class="en">Other defences: horns (deer, rhinoceros), eyespots (butterfly), pulling into the shell (turtle, snail), inflating the body (pufferfish), venomous sting (scorpion), living in groups (elephant), strong legs (zebra).</div></li>
+<li class="it"><div class="zh"><mark>适应恶劣气候</mark>： </div><div class="en"><mark>Adapting to harsh climates:</mark></div></li>
+<li class="it"><div class="zh">寒冷的气候：厚毛、厚脂肪、小耳朵（北极狐、鲸、海象）→ 减少热量散失，保暖。 </div><div class="en">Cold climate: thick fur, thick layer of fat, small ears (Arctic fox, whale, walrus) → reduce heat loss to keep warm.</div></li>
+<li class="it"><div class="zh">炎热的气候：大耳朵（耳廓狐）→ 帮助散热；驼峰储存脂肪（骆驼）。 </div><div class="en">Hot climate: big ears (fennec fox) → help lose heat; the camel&#x27;s hump stores fat.</div></li>
+<li class="it"><div class="zh">行为：躲在地洞、夜晚才出来活动（避开白天炽热的阳光）；冬眠（降低呼吸率和心率，减少能量消耗）；在泥沼里打滚（散热降温）。 </div><div class="en">Behaviour: hiding in burrows and coming out at night (avoids the hot daytime sun); hibernating (lower breathing and heart rate, use less energy); wallowing in mud (loses heat and cools down).</div></li>
+<li class="it"><div class="zh"><mark>繁殖和保护后代</mark>：动物的繁殖方法有两种：<mark>胎生</mark>和<mark>卵生</mark>。 </div><div class="en"><mark>Reproduction and protecting young:</mark> animals reproduce in two ways: <mark>viviparous</mark> (give birth to live young) and <mark>oviparous</mark> (lay eggs).</div></li>
+<li class="it"><div class="zh">卵生例子：蝴蝶把卵产在叶子背面；企鹅雌性产卵、雄性孵卵；蟒蛇用身体盘绕卵堆保温；小丑鱼在珊瑚礁上产卵。 </div><div class="en">Egg-laying examples: butterfly lays eggs under a leaf; penguin — female lays, male incubates; python coils around its eggs to keep them warm; clownfish lays eggs on coral.</div></li>
+<li class="it"><div class="zh">胎生例子：猴子、老虎（用乳汁哺育幼儿）、树袋熊（幼儿在育儿袋里成长）、蝎子（幼儿趴在母亲背上）。 </div><div class="en">Live-birth examples: monkey, tiger (feeds young with milk), koala (young grow in the pouch), scorpion (young ride on the mother&#x27;s back).</div></li>
+<li class="it"><div class="zh">保护后代的方法：把卵产在隐蔽的地方、把卵含在嘴里（罗非鱼）、成群袭击敌人（蜜蜂）、喂养幼儿。 </div><div class="en">Ways to protect young: lay eggs in hidden places, carry them in the mouth (tilapia), attack enemies as a group (bees), feed the young.</div></li>
+</ul></section>
+<section class="sec"><h3><span class="zh">3.2 创造动物模型</span><span class="en">3.2 Creating an Animal Model</span><span class="src">S1 p.23, J-4, 课本 Textbook S6 p.62-63</span></h3><ul class="items">
+<li class="it"><div class="zh">设计动物模型时，每个特征都要有作用： </div><div class="en">When designing an animal model, each feature must have a purpose:</div></li>
+<li class="it"><div class="zh">尖刺：使敌人不敢靠近。 </div><div class="en">Spines: stop enemies coming near.</div></li>
+<li class="it"><div class="zh">尾巴：使身体保持稳定。 </div><div class="en">Tail: keeps the body steady.</div></li>
+<li class="it"><div class="zh">坚硬的鳞片：保护身体。 </div><div class="en">Hard scales: protect the body.</div></li>
+<li class="it"><div class="zh">含剧毒的平滑表皮：让敌人中毒。 </div><div class="en">Smooth, highly poisonous skin: poisons enemies.</div></li>
+<li class="it"><div class="zh">练习：设计一只住在炎热干燥陆地的动物，要有保护自己的外形特征，还有适应炎热气候的特殊特征，并画出来、标示重点。 </div><div class="en">Practice: design an animal that lives on hot, dry land, with a physical feature to protect itself and a special feature for the hot climate. Draw it and label the key features.</div></li>
+</ul></section>
+<section class="sec"><h3><span class="zh">3.3 生物之间的食物联系</span><span class="en">3.3 Food Relationships Between Living Things</span><span class="src">S1 p.24-25, J-4, J-5, 课本 Textbook S6 p.64-80</span></h3><ul class="items">
+<li class="it"><div class="zh"><mark>食物链</mark>表示生物之间“吃”与“被吃”的关系。箭头表示<mark>被吃</mark>（也表示能量传递的方向）。 </div><div class="en">A <mark>food chain</mark> shows the “eating” and “being eaten” relationship between living things. The arrow means <mark>is eaten by</mark> (and shows the direction energy is passed on).</div></li>
+<li class="it"><div class="zh">例子：稻 → 蚱蜢 → 鸡 → 蛇 </div><div class="en">Example: rice → grasshopper → chicken → snake</div></li>
+<li class="it"><div class="zh"><mark>太阳</mark>是食物链中主要的<mark>能源</mark>。 </div><div class="en">The <mark>Sun</mark> is the main <mark>source of energy</mark> in a food chain.</div></li>
+<li class="it"><div class="zh">稻是绿色植物，通过<mark>光合作用</mark>自己制造食物，是<mark>生产者</mark>。 </div><div class="en">Rice is a green plant that makes its own food by <mark>photosynthesis</mark>, so it is a <mark>producer</mark>.</div></li>
+<li class="it"><div class="zh">蚱蜢、鸡和蛇以植物或其他动物为食，是<mark>消费者</mark>。 </div><div class="en">The grasshopper, chicken and snake eat plants or other animals, so they are <mark>consumers</mark>.</div></li>
+<li class="it"><div class="zh">能量沿着食物链传递：稻 → 蚱蜢 → 鸡 → 蛇。每个生物都把一部分能量用来进行生命过程，所以能量不会完全传给下一个生物。 </div><div class="en">Energy is passed along the chain: rice → grasshopper → chicken → snake. Each living thing uses some energy for life processes, so not all energy passes to the next one.</div></li>
+<li class="it"><div class="zh">几条食物链连在一起，成为<mark>食物网</mark>。 </div><div class="en">Several food chains joined together make a <mark>food web</mark>.</div></li>
+<li class="it"><div class="zh">如果食物网里某个生物的数量增加或减少，同一栖息地里其他生物的数量都会受到影响。 </div><div class="en">If the number of one living thing in a food web increases or decreases, the numbers of the other living things in the same habitat are affected.</div></li>
+<li class="it"><div class="zh">例：蛇的数量锐减 → 它的猎物（如老鼠、松鼠）的数量将增加。 </div><div class="en">e.g. if the number of snakes falls sharply → the number of their prey (e.g. rats, squirrels) will increase.</div></li>
+<li class="it"><div class="zh">例：油棕园的食物网：油棕 → 老鼠 → 蛇；油棕 → 松鼠 → 蛇。生产者 = 油棕；终极消费者 = 蛇。 </div><div class="en">e.g. oil palm plantation food web: oil palm → rat → snake; oil palm → squirrel → snake. Producer = oil palm; final consumer = snake.</div></li>
+</ul></section><p class="hint">标有 <span class="xbadge">extra 补充</span> 的是课本/练习册以外的补充说明。 Items marked <span class="xbadge">extra</span> are extra explanations beyond the workbook/textbook.</p></div>
+<div id="cards" class="pane">
+ <div class="deckbar"><button class="btn alt" id="shuf">🔀 打乱 Shuffle</button><button class="btn alt" id="flt">只练没记得的 Practise only unknown</button><button class="btn alt" id="rst">重设 Reset</button></div>
+ <div class="pgbar"><i id="cbar"></i></div><div class="stat" id="cstat"></div>
+ <div class="scene"><div class="card" id="card"><div class="face front" id="cf"></div><div class="face back" id="cb"></div></div></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn alt" id="prev">⬅ 上一张</button><span id="cpos" class="stat"></span><button class="btn alt" id="next">下一张 ➡</button></div>
+ <div class="deckbar" style="justify-content:center"><button class="btn bad" id="again">✘ 再练 Again</button><button class="btn good" id="got">✔ 记得 Got it</button></div>
+ <p class="hint">点卡片翻转（或按空格键）。 Click the card (or press Space) to flip.</p>
+</div>
+<div id="quiz" class="pane"><div id="qarea"></div></div>
+</main>
+<footer>Study Buddy · 五年级科学 · Unit 3 · 不需要网络 works offline</footer>
+<script type="application/json" id="data">{"id": "U3", "cards": [{"fz": "物种", "fe": "species", "bz": "一种生物；要确保它不绝种", "be": "one kind of living thing; must not become extinct", "s": "S1 p.18, J-3", "x": false}, {"fz": "绝种", "fe": "extinct", "bz": "一种生物全部消失", "be": "when a species disappears completely", "s": "S1 p.18, J-3", "x": false}, {"fz": "后代", "fe": "offspring", "bz": "动物生下的幼儿", "be": "the young that animals produce", "s": "S1 p.18, J-3", "x": false}, {"fz": "外形特征", "fe": "physical characteristics", "bz": "例：尖刺、鳞片、角", "be": "e.g. spines, scales, horns", "s": "S1 p.18, J-3", "x": false}, {"fz": "特殊本能", "fe": "special instincts", "bz": "例：冬眠、伪装、自断身体部位", "be": "e.g. hibernation, camouflage, shedding body parts", "s": "S1 p.18, J-3", "x": false}, {"fz": "尖刺", "fe": "spines", "bz": "让敌人不敢靠近", "be": "stop enemies coming near", "s": "S1 p.20, J-4", "x": false}, {"fz": "坚硬的鳞片", "fe": "hard scales", "bz": "保护身体，避免被擦伤或咬伤", "be": "protect the body from scratches and bites", "s": "S1 p.20, J-4", "x": false}, {"fz": "难闻的气味", "fe": "foul smell", "bz": "让敌人感到不适", "be": "makes enemies uncomfortable", "s": "S1 p.20, J-4", "x": false}, {"fz": "喷出黑墨", "fe": "squirting ink", "bz": "干扰敌人视线，趁机逃跑", "be": "blocks enemy's view so it can escape", "s": "S1 p.20, J-4", "x": false}, {"fz": "自断身体部位", "fe": "shedding a body part", "bz": "引开敌人注意力，趁机逃跑", "be": "distracts the enemy so it can escape", "s": "S1 p.20, J-4", "x": false}, {"fz": "伪装", "fe": "camouflage", "bz": "身体颜色与环境融合，不容易被发现", "be": "body colour blends with surroundings", "s": "S1 p.20, J-4", "x": false}, {"fz": "缩进壳里", "fe": "pulling into the shell", "bz": "乌龟、蜗牛的自卫方法", "be": "defence of turtles and snails", "s": "S1 p.19, J-3", "x": false}, {"fz": "体形膨胀", "fe": "inflating the body", "bz": "河豚的自卫方法", "be": "defence of the pufferfish", "s": "S1 p.19, J-3", "x": false}, {"fz": "厚脂肪", "fe": "thick layer of fat", "bz": "保暖，减少热量散失（鲸、海象）", "be": "keeps warm; reduces heat loss (whale, walrus)", "s": "S1 p.21, J-4", "x": false}, {"fz": "大耳朵", "fe": "big ears", "bz": "帮助散热（耳廓狐）", "be": "help lose heat (fennec fox)", "s": "S1 p.21, J-4", "x": false}, {"fz": "冬眠", "fe": "hibernation", "bz": "降低呼吸率和心率，减少能量消耗", "be": "lowers breathing and heart rate to use less energy", "s": "S1 p.21, J-4", "x": false}, {"fz": "胎生", "fe": "viviparous", "bz": "直接生下幼儿，例：老虎、猴子", "be": "gives birth to live young, e.g. tiger, monkey", "s": "S1 p.22, J-4", "x": false}, {"fz": "卵生", "fe": "oviparous", "bz": "产卵，例：蝴蝶、企鹅、鳄鱼", "be": "lays eggs, e.g. butterfly, penguin, crocodile", "s": "S1 p.22, J-4", "x": false}, {"fz": "食物链", "fe": "food chain", "bz": "生物之间吃与被吃的关系", "be": "the eating / being-eaten relationship", "s": "S1 p.24, J-4", "x": false}, {"fz": "食物网", "fe": "food web", "bz": "几条食物链连在一起", "be": "several food chains joined together", "s": "S1 p.25, J-5", "x": false}, {"fz": "生产者", "fe": "producer", "bz": "自己制造食物的绿色植物", "be": "green plant that makes its own food", "s": "S1 p.24, J-4", "x": false}, {"fz": "消费者", "fe": "consumer", "bz": "以植物或其他动物为食的生物", "be": "living thing that eats plants or other animals", "s": "S1 p.24, J-4", "x": false}, {"fz": "光合作用", "fe": "photosynthesis", "bz": "植物吸收阳光制造食物", "be": "plants use sunlight to make food", "s": "S1 p.24, J-4", "x": false}, {"fz": "栖息地", "fe": "habitat", "bz": "生物生活的地方", "be": "the place where living things live", "s": "S1 p.25, J-5", "x": false}], "quiz": [{"qz": "动物确保物种生存，是为了避免什么？", "qe": "Animals make sure their species survives to avoid what?", "o": [["绝种", "extinction"], ["冬眠", "hibernation"], ["光合作用", "photosynthesis"], ["伪装", "camouflage"]], "a": 0, "tf": false, "ez": "让后代延续，才不会绝种。", "ee": "Offspring must continue so the species does not become extinct.", "s": "S1 p.18, J-3"}, {"qz": "臭鼬散发难闻的气味，是哪种自卫方法？", "qe": "A skunk gives out a foul smell. This is which kind of defence?", "o": [["伪装", "camouflage"], ["难闻的气味", "foul smell"], ["喷出黑墨", "squirting ink"], ["自断身体部位", "shedding a body part"]], "a": 1, "tf": false, "ez": "难闻的气味让敌人感到不适。", "ee": "A foul smell makes the enemy uncomfortable.", "s": "S1 p.20, J-4"}, {"qz": "壁虎被抓住时会断尾逃跑，这是什么自卫方法？", "qe": "A gecko drops its tail to escape. What defence is this?", "o": [["自断身体部位", "shedding a body part"], ["体形膨胀", "inflating the body"], ["坚硬的鳞片", "hard scales"], ["尖刺", "spines"]], "a": 0, "tf": false, "ez": "断尾引开敌人的注意力，趁机逃跑。", "ee": "The dropped tail distracts the enemy so the gecko can escape.", "s": "S1 p.20, J-4; S3 p.3 Q3"}, {"qz": "变色龙身体颜色与环境融合，这叫什么？", "qe": "A chameleon's body colour blends with its surroundings. What is this called?", "o": [["伪装", "camouflage"], ["冬眠", "hibernation"], ["胎生", "viviparous"], ["消费者", "consumer"]], "a": 0, "tf": false, "ez": "伪装让敌人不容易发现它。", "ee": "Camouflage makes it hard for enemies to spot the animal.", "s": "S1 p.20, J-4"}, {"qz": "鲸有厚脂肪，可以在寒冷的气候保暖。", "qe": "A whale has a thick layer of fat that keeps it warm in cold climates.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "厚脂肪减少热量散失。", "ee": "The thick fat reduces heat loss.", "s": "S1 p.21, J-4"}, {"qz": "耳廓狐的大耳朵有什么作用？", "qe": "What is the use of the fennec fox's big ears?", "o": [["帮助散热", "help lose heat"], ["储存水分", "store water"], ["吸引伴侣", "attract a mate"], ["保暖", "keep warm"]], "a": 0, "tf": false, "ez": "大耳朵表面积大，帮助身体散热。", "ee": "Big ears have a large surface and help the body lose heat.", "s": "S1 p.21, J-4"}, {"qz": "动物冬眠时会怎样？", "qe": "What happens when an animal hibernates?", "o": [["降低呼吸率和心率，减少能量消耗", "breathing and heart rate fall, so it uses less energy"], ["每天吃更多食物", "it eats more food every day"], ["心跳加快", "its heartbeat speeds up"], ["到处奔跑", "it runs around"]], "a": 0, "tf": false, "ez": "冬眠让动物在寒冷、缺少食物的季节节省能量。", "ee": "Hibernation saves energy in the cold season when food is scarce.", "s": "S1 p.21, J-4"}, {"qz": "河马在泥沼中打滚，原因是什么？", "qe": "Why does a hippopotamus wallow in mud?", "o": [["散热降温，保持凉爽", "to lose heat and keep cool"], ["找食物", "to find food"], ["冬眠", "to hibernate"], ["产卵", "to lay eggs"]], "a": 0, "tf": false, "ez": "泥沼帮助散热降温。", "ee": "The mud helps it lose heat and cool down.", "s": "S1 p.21, J-4"}, {"qz": "以下哪种动物是**卵生**？", "qe": "Which animal is **oviparous** (lays eggs)?", "o": [["老虎", "tiger"], ["猴子", "monkey"], ["蝴蝶", "butterfly"], ["树袋熊", "koala"]], "a": 2, "tf": false, "ez": "蝴蝶产卵；老虎、猴子、树袋熊是胎生。", "ee": "A butterfly lays eggs; the tiger, monkey and koala give birth to live young.", "s": "S1 p.22, J-4"}, {"qz": "在食物链里，箭头表示“被吃”。", "qe": "In a food chain, the arrow means “is eaten by”.", "o": [["对", "True"], ["错", "False"]], "a": 0, "tf": true, "ez": "例：稻 → 蚱蜢，表示稻被蚱蜢吃。", "ee": "e.g. rice → grasshopper means rice is eaten by the grasshopper.", "s": "S1 p.24, J-4"}, {"qz": "在“稻 → 蚱蜢 → 鸡 → 蛇”中，**生产者**是什么？", "qe": "In “rice → grasshopper → chicken → snake”, what is the **producer**?", "o": [["稻", "rice"], ["蚱蜢", "grasshopper"], ["鸡", "chicken"], ["蛇", "snake"]], "a": 0, "tf": false, "ez": "稻是绿色植物，自己制造食物。", "ee": "Rice is a green plant and makes its own food.", "s": "S1 p.24, J-4"}, {"qz": "食物链中主要的能量来自哪里？", "qe": "Where does the main energy in a food chain come from?", "o": [["太阳", "the Sun"], ["蚱蜢", "grasshopper"], ["土壤", "soil"], ["水", "water"]], "a": 0, "tf": false, "ez": "植物吸收太阳的能量进行光合作用。", "ee": "Plants take in the Sun's energy for photosynthesis.", "s": "S1 p.24, J-4"}, {"qz": "如果蛇的数量锐减，它的猎物（老鼠、松鼠）的数量将会减少。", "qe": "If the number of snakes falls sharply, the number of their prey (rats, squirrels) will decrease.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "天敌减少，猎物的数量将增加。", "ee": "With fewer predators, the prey will increase.", "s": "S1 p.25, J-5"}, {"qz": "几条食物链连在一起，叫做什么？", "qe": "Several food chains joined together are called what?", "o": [["食物网", "food web"], ["栖息地", "habitat"], ["物种", "species"], ["光合作用", "photosynthesis"]], "a": 0, "tf": false, "ez": "互相连接的食物链形成食物网。", "ee": "Interlinked food chains form a food web.", "s": "S1 p.25, J-5"}, {"qz": "食物网里一种生物的数量改变，不会影响同一栖息地的其他生物。", "qe": "A change in the number of one living thing in a food web does not affect other living things in the same habitat.", "o": [["对", "True"], ["错", "False"]], "a": 1, "tf": true, "ez": "生物之间互相影响。", "ee": "Living things in a food web affect each other.", "s": "S1 p.25, J-5"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'yc5sci-' + D.id;
+const $ = (s, r=document) => r.querySelector(s);
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>');}
+// tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+});
+// ---------- flashcards ----------
+let known = {}; try{known = JSON.parse(localStorage.getItem(KEY+'-cards')||'{}')}catch(e){}
+let order = D.cards.map((_,i)=>i), pos = 0, onlyAgain = false;
+function save(){try{localStorage.setItem(KEY+'-cards',JSON.stringify(known))}catch(e){}}
+function buildOrder(){ order = D.cards.map((_,i)=>i).filter(i=>!onlyAgain || known[i]!==1); if(!order.length){order=D.cards.map((_,i)=>i);onlyAgain=false;} pos=Math.min(pos,order.length-1); }
+function showCard(){
+  const i = order[pos], c = D.cards[i];
+  const card = $('#card'); card.classList.remove('flip');
+  $('#cf').innerHTML = `<div class="zh">${esc(c.fz)}</div><div class="en">${esc(c.fe)}</div><div class="meta">${c.x?'extra 补充 · ':''}${esc(c.s)} · 点击翻转 click to flip</div>`;
+  $('#cb').innerHTML = `<div class="zh">${esc(c.bz)}</div><div class="en">${esc(c.be)}</div><div class="meta">${esc(c.s)}</div>`;
+  $('#cpos').textContent = `${pos+1} / ${order.length}`;
+  const n = Object.values(known).filter(v=>v===1).length;
+  $('#cstat').textContent = `已记得 Got it: ${n} / ${D.cards.length}`;
+  $('#cbar').style.width = (100*n/D.cards.length)+'%';
+}
+$('#card').onclick = ()=>$('#card').classList.toggle('flip');
+$('#prev').onclick = ()=>{pos=(pos-1+order.length)%order.length;showCard()};
+$('#next').onclick = ()=>{pos=(pos+1)%order.length;showCard()};
+$('#got').onclick = ()=>{known[order[pos]]=1;save();$('#next').click()};
+$('#again').onclick = ()=>{known[order[pos]]=0;save();$('#next').click()};
+$('#shuf').onclick = ()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}pos=0;showCard()};
+$('#flt').onclick = ()=>{onlyAgain=!onlyAgain;$('#flt').textContent=onlyAgain?'显示全部 Show all':'只练没记得的 Practise only unknown';pos=0;buildOrder();showCard()};
+$('#rst').onclick = ()=>{known={};save();onlyAgain=false;$('#flt').textContent='只练没记得的 Practise only unknown';buildOrder();pos=0;showCard()};
+document.addEventListener('keydown',e=>{ if(!$('#cards').classList.contains('on'))return; if(e.key===' '){e.preventDefault();$('#card').click()} if(e.key==='ArrowRight')$('#next').click(); if(e.key==='ArrowLeft')$('#prev').click();});
+buildOrder(); showCard();
+// ---------- quiz ----------
+let qs=[], qi=0, score=0, wrong=[];
+function startQuiz(){ qs=D.quiz.map((_,i)=>i); for(let i=qs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qs[i],qs[j]]=[qs[j],qs[i]]} qi=0;score=0;wrong=[]; renderQ(); }
+function renderQ(){
+  const box=$('#qarea');
+  if(qi>=qs.length){ return endQuiz(); }
+  const q=D.quiz[qs[qi]];
+  const opts = q.o.map((o,k)=>`<button class="opt" data-k="${k}"><div class="zh">${esc(o[0])}</div><div class="en">${esc(o[1])}</div></button>`).join('');
+  box.innerHTML = `<div class="qbox q"><div class="qnum">第 ${qi+1} / ${qs.length} 题 Question ${qi+1} of ${qs.length} · ${q.tf?'对错题 True / False':'选择题 Multiple choice'}</div>
+   <div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="opts">${opts}</div>
+   <div class="fb" id="fb"></div><div style="text-align:right;margin-top:10px"><button class="btn" id="nq" style="display:none">${qi+1<qs.length?'下一题 Next ➜':'看分数 See score ➜'}</button></div></div>`;
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k,q,b));
+  $('#nq').onclick=()=>{qi++;renderQ()};
+}
+function answer(k,q,btn){
+  const ok = k===q.a; if(ok)score++; else wrong.push(qs[qi]);
+  document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true; if(i===q.a)b.classList.add('right'); else if(b===btn)b.classList.add('wrong');});
+  const fb=$('#fb'); fb.className='fb show '+(ok?'ok':'no');
+  fb.innerHTML = `<div class="zh"><b>${ok?'✔ 答对了！':'✘ 答错了。'}</b> ${esc(q.ez)}</div><div class="en"><b>${ok?'Correct!':'Not quite.'}</b> ${esc(q.ee)}</div><div class="src">来源 Source: ${esc(q.s)}</div>`;
+  $('#nq').style.display='inline-block';
+}
+function endQuiz(){
+  const n=qs.length, pct=Math.round(100*score/n);
+  const msg = pct>=90?'太棒了！Excellent!':pct>=70?'做得好！Well done!':pct>=50?'继续加油！Keep going!':'再看一遍笔记，再试一次。Review the notes and try again.';
+  try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');h.push({d:new Date().toISOString().slice(0,10),s:score,n:n});localStorage.setItem(KEY+'-quiz',JSON.stringify(h.slice(-20)))}catch(e){}
+  let hist=''; try{const h=JSON.parse(localStorage.getItem(KEY+'-quiz')||'[]');hist='<div class="stat">最近成绩 Recent scores: '+h.slice(-5).map(x=>x.s+'/'+x.n).join(' · ')+'</div>'}catch(e){}
+  let w=''; if(wrong.length){w='<h3>要复习的题目 Questions to review</h3><ul class="wrongs">'+wrong.map(i=>{const q=D.quiz[i];return `<li><div class="zh">${esc(q.qz)}</div><div class="en">${esc(q.qe)}</div><div class="stat">→ ${esc(q.o[q.a][0])} / ${esc(q.o[q.a][1])} <span class="src">${esc(q.s)}</span></div></li>`}).join('')+'</ul>'}
+  $('#qarea').innerHTML = `<div class="qbox score"><div class="big">${score} / ${n}</div><div style="font-size:22px">${msg}</div>${hist}<p><button class="btn" id="retry">再做一次 Try again</button></p>${w}</div>`;
+  $('#retry').onclick=startQuiz;
+}
+startQuiz();
+</script></body></html>
