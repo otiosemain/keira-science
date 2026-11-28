@@ -134,7 +134,7 @@
   }
 
   // ---- Firebase lazy loading ----
-  var loading = null;
+  var loading = null, signingIn = false;
   function loadFirebase() {
     if (loading) return loading;
     loading = Promise.all([import(SDK + 'firebase-app.js'), import(SDK + 'firebase-auth.js'), import(SDK + 'firebase-database.js')])
@@ -147,7 +147,7 @@
             rawSet.call(LS, 'ks:_auth', '1');
             setUI('busy');
             pullAndMerge().then(afterSync).then(flush).catch(function (e) { setUI('err', e); });
-          } else { rawSet.call(LS, 'ks:_auth', '0'); setUI('out'); }
+          } else { rawSet.call(LS, 'ks:_auth', '0'); if (!signingIn) setUI('out'); }
         });
         return fb;
       });
@@ -155,7 +155,7 @@
     return loading;
   }
   function signIn() {
-    setUI('busy');
+    setUI('busy'); signingIn = true;
     loadFirebase().then(function () {
       var p = new fb.A.GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' });
       return fb.A.signInWithPopup(fb.auth, p).catch(function (e) {
@@ -164,7 +164,8 @@
         if (/popup-closed-by-user|cancelled-popup/.test(c)) { setUI('out'); return; }
         throw e;
       });
-    }).catch(function (e) { setUI(navigator.onLine === false ? 'offline' : 'err', e); });
+    }).catch(function (e) { setUI(navigator.onLine === false ? 'offline' : 'err', e); })
+      .then(function () { signingIn = false; if (!KS.user && KS.state === 'busy') setUI('out'); });
   }
   function signOut() { flush(); if (fb) fb.A.signOut(fb.auth).then(function () { setUI('out'); }); }
   KS.signIn = signIn; KS.signOut = signOut; KS.flush = flush;
