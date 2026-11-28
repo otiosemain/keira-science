@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Keira 的五年级科学 · Std 5 Science</title>
+<style>
+:root{--c:#2f7fd1;--bg:#fffaf0;--ink:#25303b;--en:#1a6f8f;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","SimHei","WenQuanYi Micro Hei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--c);color:#fff;padding:22px 22px 18px}
+header .hi{font-size:17px;background:rgba(255,255,255,.2);display:inline-block;border-radius:14px;padding:4px 14px;margin-bottom:10px}
+header .hi .en{font-size:14px;opacity:.95;margin-left:6px}
+header h1{margin:0;font-size:28px}
+header h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:4px}
+header p{margin:8px 0 0;font-size:15px;opacity:.95}
+header p .en{display:block;opacity:.9;font-size:14px;margin-top:2px}
+main{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+h2{margin:8px 0 14px;font-size:22px;color:var(--c)}
+h2 .en{display:block;font-size:15px;font-weight:400;color:var(--en)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+a.unit{display:block;background:var(--card);border-radius:16px;padding:16px 16px 14px;text-decoration:none;color:inherit;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c);min-height:92px;transition:transform .12s ease,box-shadow .12s ease}
+a.unit:hover,a.unit:focus{transform:translateY(-2px);box-shadow:0 6px 14px rgba(47,127,209,.22);outline:none}
+a.unit .num{font-size:12px;color:#667;letter-spacing:.02em}
+a.unit .zh{font-size:22px;font-weight:700;color:var(--c);margin-top:2px}
+a.unit .en{font-size:14.5px;color:var(--en);margin-top:2px}
+.uic{font-size:26px;vertical-align:-3px}
+.new{background:#fffbe6;border:2px dashed #f2b600;border-radius:14px;padding:10px 14px;margin:0 0 16px;font-size:15px}.new .en{display:block;color:var(--en);font-size:14px}
+.pdfs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px}
+a.pdf{display:block;background:#fff;border-radius:16px;padding:16px;text-decoration:none;color:inherit;box-shadow:0 2px 6px rgba(0,0,0,.08);border:2px solid #d7e6f5}
+a.pdf:hover,a.pdf:focus{border-color:var(--c);box-shadow:0 6px 14px rgba(47,127,209,.18);outline:none}
+a.pdf .zh{font-size:18px;font-weight:700;color:var(--c)}
+a.pdf .en{font-size:14px;color:var(--en);margin-top:2px}
+.note{margin-top:22px;background:#fff;border-radius:14px;padding:14px 16px;color:#556;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.note .en{display:block;color:var(--en);margin-top:4px}
+footer{text-align:center;color:#889;font-size:12px;padding:8px 16px 28px}
+@media (max-width:640px){
+  header h1{font-size:24px}
+  .grid,.pdfs{grid-template-columns:1fr}
+  a.unit .zh{font-size:20px}
+}
+.ucard{display:flex;flex-direction:column;background:var(--card);border-radius:16px;box-shadow:0 2px 6px rgba(0,0,0,.08);border-left:8px solid var(--c);overflow:hidden}
+.ucard a.unit{box-shadow:none;border-left:0;border-radius:0;min-height:0}
+.ucard .links{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.ucard .links a{font-size:13.5px;text-decoration:none;color:var(--c);border:1.5px solid var(--c);border-radius:999px;padding:3px 10px;background:#fff}
+.ucard .links a:hover{background:var(--c);color:#fff}
+.exam{background:linear-gradient(135deg,#c0392b,#7b1f16);color:#fff;border-radius:18px;padding:16px 18px;margin:0 0 20px}
+.exam h2{color:#fff;margin:0 0 6px}.exam h2 .en{color:#ffe3dc}
+.exam .row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+.exam .row a{display:block;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;border-radius:14px;padding:10px 12px}
+.exam .row a:hover{background:rgba(255,255,255,.26)}
+.exam .row a b{display:block;font-size:17px}.exam .row a span{font-size:13px;opacity:.92}
+.exam p{margin:4px 0 0;font-size:14.5px}.exam p .en{display:block;opacity:.9;font-size:13.5px}
+@media(max-width:640px){.exam .row{grid-template-columns:1fr 1fr}}
+.uprog{font-size:12.5px;color:#556;margin-top:6px}.uprog .bar{height:7px;background:#eef1f5;border-radius:7px;overflow:hidden;margin-bottom:2px}.uprog .bar i{display:block;height:100%;background:var(--c)}</style>
+</head>
+<body><!--ks--><script>/*ks-core*/(function(){var S="science",G={"science": [["yc5sci-", "unit-"], ["yc5exam-", "exam-"]]};window.KS_SUBJECT=S;try{var L=localStorage;Object.keys(G).forEach(function(s){var f='ks:_mig:'+s;if(L.getItem(f))return;var ks=[];for(var i=0;i<L.length;i++)ks.push(L.key(i));ks.forEach(function(k){G[s].forEach(function(m){if(k.indexOf(m[0])===0){var n='ks:'+s+':'+m[1]+k.slice(m[0].length);if(L.getItem(n)===null)L.setItem(n,L.getItem(k));}});});L.setItem(f,'1');});}catch(e){}})();</script><script src="../sync.js" defer></script>
+<header>
+  <p style="margin:0 0 6px"><a href="../" style="color:#fff;text-decoration:none;font-size:15px">⬅ 所有科目 All subjects</a></p>
+  <div class="hi">👋 Keira，你好！今天也一起加油吧！ <span class="en">Hi Keira! Let's learn something new today!</span></div>
+  <h1>五年级科学<small>Standard 5 Science</small></h1>
+  <p>玉柴 · Yuk Chai · KSSR Semakan
+    <span class="en">Bilingual notes, flashcards, quizzes and exam practice. Chinese first, English underneath.</span>
+  </p>
+</header>
+<main>
+  <div class="new">🆕 每个单元现在有：📄 一页总结、⚠️ 常见错误、🇲🇾 生活中的科学、🔗 单元联系、✍️ 考试答题示范（弱答案 vs 满分答案）和 🎬 动画。单元 1–4 也对照课本补充了内容。<span class="en">Every unit now has a one-page summary, common mistakes, real-life Malaysia links, connections, worked exam answers (weak vs full-mark) and an animation. Units 1–4 were also checked against the textbook and filled in.</span></div>
+  <div class="exam"><h2>📝 考试练习 Exam Practice<span class="en">UASA 格式：A 组选择题、B 组配对/✓✗、C 组结构题 · 有计时器和等级 · timed, with grades</span></h2><div class="row"><a href="exam-midyear.html"><b>年中模拟</b><span>Mid-year mock · 单元 1–4 · 75 min</span></a><a href="exam-yearend-1.html"><b>年终模拟 1</b><span>Year-end mock 1 · 75 min</span></a><a href="exam-yearend-2.html"><b>年终模拟 2</b><span>Year-end mock 2 · 75 min</span></a><a href="exam-yearend-3.html"><b>年终模拟 3</b><span>Year-end mock 3 · 75 min</span></a></div><p>每个单元也有 40 分钟的单元练习卷（见下面每个单元的 📝）。 <a href="exam.html" style="color:#fff;font-weight:700">全部试卷 All papers →</a> · <a href="exam-guide.html" style="color:#fff;font-weight:700">📘 C 组答题技巧 How to answer Section C</a><span class="en">Each unit also has a 40-minute topical paper (📝 under each unit).</span></p></div>
+  <h2>单元 Units<span class="en">Tap a unit for notes, flashcards, quiz and exam practice · <a href="syllabus-map.html">🗺️ 全课程思维导图 Whole-syllabus mind map</a></span></h2>
+  <div class="grid">
+    <div class="ucard" style="--c:#2f7fd1"><a class="unit" href="unit01-science-skills.html" style="--c:#2f7fd1"><div class="num">单元 Unit 1</div><div class="zh"><span class="uic">🔬</span> 科学技能</div><div class="en">Scientific Skills</div><div class="uprog" data-u="U1"></div></a><div class="links"><a href="unit01-science-skills.html">📖 笔记 Notes</a><a href="unit01-science-skills.html#cards">🃏 闪卡 Cards</a><a href="unit01-science-skills.html#quiz">✅ 题库 Quiz</a><a href="unit01-science-skills.html#summary">📄 总结 Summary</a><a href="exam-unit01.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#d1503a"><a class="unit" href="unit02-humans.html" style="--c:#d1503a"><div class="num">单元 Unit 2</div><div class="zh"><span class="uic">🫀</span> 人类</div><div class="en">Humans</div><div class="uprog" data-u="U2"></div></a><div class="links"><a href="unit02-humans.html">📖 笔记 Notes</a><a href="unit02-humans.html#cards">🃏 闪卡 Cards</a><a href="unit02-humans.html#quiz">✅ 题库 Quiz</a><a href="unit02-humans.html#summary">📄 总结 Summary</a><a href="exam-unit02.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#2e9e5b"><a class="unit" href="unit03-animals.html" style="--c:#2e9e5b"><div class="num">单元 Unit 3</div><div class="zh"><span class="uic">🐾</span> 动物</div><div class="en">Animals</div><div class="uprog" data-u="U3"></div></a><div class="links"><a href="unit03-animals.html">📖 笔记 Notes</a><a href="unit03-animals.html#cards">🃏 闪卡 Cards</a><a href="unit03-animals.html#quiz">✅ 题库 Quiz</a><a href="unit03-animals.html#summary">📄 总结 Summary</a><a href="exam-unit03.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#7a9a1f"><a class="unit" href="unit04-plants.html" style="--c:#7a9a1f"><div class="num">单元 Unit 4</div><div class="zh"><span class="uic">🌱</span> 植物</div><div class="en">Plants</div><div class="uprog" data-u="U4"></div></a><div class="links"><a href="unit04-plants.html">📖 笔记 Notes</a><a href="unit04-plants.html#cards">🃏 闪卡 Cards</a><a href="unit04-plants.html#quiz">✅ 题库 Quiz</a><a href="unit04-plants.html#summary">📄 总结 Summary</a><a href="exam-unit04.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#d68a00"><a class="unit" href="unit05-electricity.html" style="--c:#d68a00"><div class="num">单元 Unit 5</div><div class="zh"><span class="uic">⚡</span> 电</div><div class="en">Electricity</div><div class="uprog" data-u="U5"></div></a><div class="links"><a href="unit05-electricity.html">📖 笔记 Notes</a><a href="unit05-electricity.html#cards">🃏 闪卡 Cards</a><a href="unit05-electricity.html#quiz">✅ 题库 Quiz</a><a href="unit05-electricity.html#summary">📄 总结 Summary</a><a href="exam-unit05.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#c2412d"><a class="unit" href="unit06-heat.html" style="--c:#c2412d"><div class="num">单元 Unit 6</div><div class="zh"><span class="uic">🌡️</span> 热</div><div class="en">Heat</div><div class="uprog" data-u="U6"></div></a><div class="links"><a href="unit06-heat.html">📖 笔记 Notes</a><a href="unit06-heat.html#cards">🃏 闪卡 Cards</a><a href="unit06-heat.html#quiz">✅ 题库 Quiz</a><a href="unit06-heat.html#summary">📄 总结 Summary</a><a href="exam-unit06.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#8a5a2b"><a class="unit" href="unit07-rusting.html" style="--c:#8a5a2b"><div class="num">单元 Unit 7</div><div class="zh"><span class="uic">🔩</span> 生锈</div><div class="en">Rusting</div><div class="uprog" data-u="U7"></div></a><div class="links"><a href="unit07-rusting.html">📖 笔记 Notes</a><a href="unit07-rusting.html#cards">🃏 闪卡 Cards</a><a href="unit07-rusting.html#quiz">✅ 题库 Quiz</a><a href="unit07-rusting.html#summary">📄 总结 Summary</a><a href="exam-unit07.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#1f8a8a"><a class="unit" href="unit08-matter.html" style="--c:#1f8a8a"><div class="num">单元 Unit 8</div><div class="zh"><span class="uic">🧊</span> 物质</div><div class="en">Matter</div><div class="uprog" data-u="U8"></div></a><div class="links"><a href="unit08-matter.html">📖 笔记 Notes</a><a href="unit08-matter.html#cards">🃏 闪卡 Cards</a><a href="unit08-matter.html#quiz">✅ 题库 Quiz</a><a href="unit08-matter.html#summary">📄 总结 Summary</a><a href="exam-unit08.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#4b4fa8"><a class="unit" href="unit09-moon-and-constellations.html" style="--c:#4b4fa8"><div class="num">单元 Unit 9</div><div class="zh"><span class="uic">🌙</span> 月相和星座</div><div class="en">Phases of the Moon and Constellations</div><div class="uprog" data-u="U9"></div></a><div class="links"><a href="unit09-moon-and-constellations.html">📖 笔记 Notes</a><a href="unit09-moon-and-constellations.html#cards">🃏 闪卡 Cards</a><a href="unit09-moon-and-constellations.html#quiz">✅ 题库 Quiz</a><a href="unit09-moon-and-constellations.html#summary">📄 总结 Summary</a><a href="exam-unit09.html">📝 考试练习 Exam</a></div></div>
+    <div class="ucard" style="--c:#6d4aa0"><a class="unit" href="unit10-machines.html" style="--c:#6d4aa0"><div class="num">单元 Unit 10</div><div class="zh"><span class="uic">⚙️</span> 机械</div><div class="en">Machines</div><div class="uprog" data-u="U10"></div></a><div class="links"><a href="unit10-machines.html">📖 笔记 Notes</a><a href="unit10-machines.html#cards">🃏 闪卡 Cards</a><a href="unit10-machines.html#quiz">✅ 题库 Quiz</a><a href="unit10-machines.html#summary">📄 总结 Summary</a><a href="exam-unit10.html">📝 考试练习 Exam</a></div></div>
+  </div>
+
+  <h2 style="margin-top:28px">打印版 Printables<span class="en">PDF notes, question bank, exam papers and answer key</span></h2>
+  <div class="pdfs">
+    <a class="pdf" href="notes-units1-4.pdf"><div class="zh">📄 单元 1–4 笔记和词汇表</div><div class="en">Units 1–4 notes and glossary (PDF)</div></a>
+    <a class="pdf" href="notes-units5-10.pdf"><div class="zh">📄 单元 5–10 笔记和词汇表</div><div class="en">Units 5–10 notes and glossary (PDF)</div></a>
+    <a class="pdf" href="summaries.pdf"><div class="zh">📄 一页总结（单元 1–10）</div><div class="en">One-page summaries, Units 1–10 (PDF)</div></a>
+    <a class="pdf" href="question-bank.pdf"><div class="zh">📄 题库（单元 1–10）</div><div class="en">Question bank, Units 1–10 (PDF)</div></a>
+    <a class="pdf" href="exam-papers.pdf"><div class="zh">📄 考试练习试卷</div><div class="en">Exam practice papers + mocks (PDF)</div></a>
+    <a class="pdf" href="answer-key.pdf"><div class="zh">📄 答案（家长用）</div><div class="en">Answer key for parents (PDF)</div></a>
+  </div>
+
+  <div class="note">手机和平板都可以打开。不需要安装 App，用浏览器即可。离线时，如果页面已经打开过，可能还可以继续看。<span class="en">Works on phones and tablets. Open in any browser — no app needed.</span></div>
+</main>
+<footer>五年级科学 Year 5 Science · KSSR Semakan · 给 Keira 的双语学习材料 Bilingual study notes for Keira</footer>
+<script>window.KS_NO_RELOAD=true;
+window.KSP=function(S,TOT,NPAPERS){var L;try{L=localStorage}catch(e){return null}
+ function J(k,d){try{var x=JSON.parse(L.getItem('ks:'+S+':'+k));return x==null?d:x}catch(e){return d}}
+ var ids={};Object.keys(TOT||{}).forEach(function(u){ids[u]=1});
+ for(var i=0;i<L.length;i++){var k=L.key(i),m=k&&k.match(new RegExp('^ks:'+S+':(?:unit|tot)-([^-]+)'));if(m)ids[m[1]]=1}
+ var units={},sum=0,n=0,started=0;
+ Object.keys(ids).forEach(function(u){var t=(TOT&&TOT[u])||J('tot-'+u,null);if(!t)return;
+  var rd=J('unit-'+u+'-read',{}),ld=J('unit-'+u+'-learn',{}),cd=J('unit-'+u+'-cards',{}),qz=J('unit-'+u+'-quiz',[]);
+  var r=Object.keys(rd).filter(function(x){return rd[x]}).length,l=Object.keys(ld).filter(function(x){return ld[x]}).length,
+      c=Object.keys(cd).filter(function(x){return cd[x]===1}).length,b=qz.length?Math.max.apply(null,qz.map(function(x){return Math.round(100*x.s/x.n)})):null;
+  var parts=[t.rn?Math.min(1,r/t.rn):null,t.ln?Math.min(1,l/t.ln):null,t.kn?Math.min(1,c/t.kn):null,b==null?0:b/100].filter(function(x){return x!=null});
+  var p=parts.length?parts.reduce(function(a,x){return a+x},0)/parts.length:0;
+  units[u]={p:Math.round(100*p),r:r,rn:t.rn,l:l,ln:t.ln,c:c,kn:t.kn,b:b};sum+=p;n++;if(r||l||c||qz.length)started++;});
+ var papers=0,bestMock=null;
+ for(var j=0;j<L.length;j++){var k2=L.key(j);if(k2&&k2.indexOf('ks:'+S+':exam-')===0){var h=J(k2.slice(('ks:'+S+':').length),[]);if(h.length){papers++;
+   if(!/exam-u\d/.test(k2)){var bp=Math.max.apply(null,h.map(function(x){return x.p}));bestMock=bestMock==null?bp:Math.max(bestMock,bp)}}}}
+ return {units:units,pct:n?Math.round(100*sum/n):0,started:started,nUnits:n,papers:papers,nPapers:NPAPERS||0,bestMock:bestMock};};
+
+function paintU(){var r=window.KSP('science',{"U1": {"rn": 6, "ln": 6, "kn": 54}, "U2": {"rn": 4, "ln": 4, "kn": 54}, "U3": {"rn": 3, "ln": 3, "kn": 54}, "U4": {"rn": 2, "ln": 2, "kn": 52}, "U5": {"rn": 3, "ln": 3, "kn": 58}, "U6": {"rn": 2, "ln": 2, "kn": 58}, "U7": {"rn": 2, "ln": 2, "kn": 57}, "U8": {"rn": 2, "ln": 2, "kn": 57}, "U9": {"rn": 2, "ln": 2, "kn": 57}, "U10": {"rn": 2, "ln": 2, "kn": 52}},14);if(!r)return;document.querySelectorAll('.uprog').forEach(function(el){var x=r.units[el.dataset.u];if(!x||!(x.r||x.l||x.c||x.b!=null)){el.innerHTML='';return}
+ el.innerHTML='<div class="bar"><i style="width:'+x.p+'%"></i></div>📊 '+x.p+'% · 学习 Learn '+x.l+'/'+x.ln+' · 笔记 Notes '+x.r+'/'+x.rn+' · 闪卡 Cards '+x.c+'/'+x.kn+(x.b!=null?' · 🏆 '+x.b+'%':'');});}
+paintU();addEventListener('ks-synced',paintU);addEventListener('storage',paintU);</script></body>
+</html>
