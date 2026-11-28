@@ -28,26 +28,43 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp .nojekyll *.html _site/
-          # PDFs are stored as base64 text (*.pdf.b64) and decoded here
-          # large PDFs are split: name.pdf.b64 + name.pdf.b64.1, .2 ... (concatenated in order)
-          for f in *.pdf.b64; do
-            cat "$f" $(ls "$f".* 2>/dev/null | sort -t. -k4 -n) | base64 -d > "_site/${f%.b64}"
+          # hub: root html (hub index + redirect stubs for old URLs) and the shared sync layer
+          cp .nojekyll *.html sync.js _site/
+          # every subject folder (science/, math/, ...) is copied as-is
+          for d in */; do
+            d=${d%/}
+            case "$d" in _site|.github) continue;; esac
+            mkdir -p "_site/$d"
+            cp -r "$d"/. "_site/$d/"
+            rm -f "_site/$d"/*.pdf.b64 "_site/$d"/*.pdf.b64.*
           done
-          for f in *.pdf; do
-            [ -f "$f" ] && [ ! -f "_site/$f" ] && cp "$f" _site/ || true
+          # PDFs are stored as base64 text (*.pdf.b64, large ones split into .b64 + .b64.1, .2 ...)
+          decode() {  # $1 = b64 file, $2 = output pdf
+            cat "$1" $(ls "$1".* 2>/dev/null | sort -t. -k4 -n) | base64 -d > "$2"
+          }
+          # legacy: Science PDFs live at the repo root -> science/ (and root, for old links)
+          for f in *.pdf.b64; do
+            [ -e "$f" ] || continue
+            decode "$f" "_site/science/${f%.b64}"
+            cp "_site/science/${f%.b64}" "_site/${f%.b64}"
+          done
+          # subject folders: <subject>/name.pdf.b64 -> <subject>/name.pdf
+          for f in */*.pdf.b64; do
+            [ -e "$f" ] || continue
+            decode "$f" "_site/${f%.b64}"
           done
           python3 - <<'PY'
           from pathlib import Path
-          need = ["notes-units1-4.pdf", "notes-units5-10.pdf", "question-bank.pdf", "exam-papers.pdf", "answer-key.pdf", "summaries.pdf"]
-          for n in need:
-              p = Path("_site") / n
+          site = Path("_site")
+          for p in site.rglob("*.pdf"):
               head = p.read_bytes()[:5]
               if head != b"%PDF-":
                   raise SystemExit(f"{p} is not a PDF, starts with {head!r}")
               print(p, "ok", p.stat().st_size)
-          for n in ["index.html", "exam.html", "exam-midyear.html", "exam-yearend-1.html", "exam-guide.html", "syllabus-map.html"]:
-              assert (Path("_site") / n).exists(), n
+          for n in ["index.html", "sync.js", "science/index.html", "science/exam.html", "science/unit01-science-skills.html",
+                    "science/notes-units1-4.pdf", "science/answer-key.pdf", "unit01-science-skills.html"]:
+              assert (site / n).exists(), n
+          print("site ok")
           PY
 
       - name: Configure Pages
